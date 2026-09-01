@@ -49,12 +49,7 @@ const schemaData = {
           "billingDuration": "P1M",
           "description": "Até 30 colaboradores, 2 acessos simultâneos inclusos, controle de salas e gestão multi-profissional."
         }
-      ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "148"
-      }
+      ]
     },
     {
       "@type": "MedicalWebPage",
@@ -130,26 +125,27 @@ const schemaData = {
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://pluri.health/branding/logo/pluri_health_logo_gradient.png" />
     <meta property="og:locale" content="pt_BR" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://pluri.health/branding/logo/pluri_health_logo_gradient.png" />
 
     <!-- Theme Color Light Clean -->
-    <meta name="theme-color" content="#fbfbfa" />
+    <meta name="theme-color" content="#f8fafc" />
 
     <!-- Google Fonts Preconnect & Optimized Load -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
 
     <!-- JSON-LD Schema Script for Search Engines & Generative AI Indexing -->
     <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
   </head>
   <body>
-    <!-- Fundo de Símbolos Prateados com Repetição Contínua -->
-    <div class="site-silver-pattern" aria-hidden="true"></div>
     <slot />
   </body>
 </html>

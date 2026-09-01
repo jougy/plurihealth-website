@@ -58,7 +58,7 @@ import Badge from './ui/Badge.astro';
       <div class="footer-links-col">
         <h4 class="footer-heading">Planos & Acesso</h4>
         <ul class="footer-links-list">
-          <li><a href="#planos" class="text-teal font-bold">Plano Gratuito Vitalício</a></li>
+          <li><a href="#planos" class="link-highlight">Plano Gratuito Vitalício</a></li>
           <li><a href="#planos">Profissional Solo</a></li>
           <li><a href="#planos">Clínica com Equipe</a></li>
           <li><a href="#planos">Passamos suas Fichas de Papel</a></li>
@@ -170,8 +170,9 @@ import Badge from './ui/Badge.astro';
     color: var(--color-primary);
   }
 
-  .text-teal {
-    color: var(--color-primary) !important;
+  .footer-links-list a.link-highlight {
+    color: var(--color-primary);
+    font-weight: 700;
   }
 
   .font-bold {

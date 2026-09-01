@@ -199,70 +199,25 @@ import SectionHeader from './ui/SectionHeader.astro';
     margin-bottom: 4rem;
   }
 
-  /* White Liquid Neon Card */
+  /* Clean Clinical Evidence Card */
   .evidence-card {
-    background-color: #ffffff;
-    border: 1px solid rgba(226, 232, 240, 0.95);
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-light);
     border-radius: var(--radius-xl);
     padding: 2rem 1.75rem;
-    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+    box-shadow: var(--shadow-card);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-    overflow: hidden;
     cursor: default;
-    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
-                box-shadow 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
-                border-color 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
   }
 
-  .evidence-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
-    transform: skewX(-20deg);
-    pointer-events: none;
-    transition: left 0.75s ease;
-  }
-
-  /* Card 1: Cyan / Primary Liquid Neon Glow */
-  .evidence-card:nth-child(1):hover {
-    transform: translateY(-8px) scale(1.02);
-    border-color: rgba(0, 242, 254, 0.8);
-    box-shadow: 0 16px 36px -6px rgba(2, 132, 199, 0.16),
-                0 0 28px rgba(0, 242, 254, 0.38),
-                inset 0 0 18px rgba(0, 242, 254, 0.06);
-  }
-
-  /* Card 2: Amber Liquid Neon Glow */
-  .evidence-card:nth-child(2):hover {
-    transform: translateY(-8px) scale(1.02);
-    border-color: rgba(245, 158, 11, 0.8);
-    box-shadow: 0 16px 36px -6px rgba(245, 158, 11, 0.16),
-                0 0 28px rgba(251, 146, 60, 0.38),
-                inset 0 0 18px rgba(245, 158, 11, 0.06);
-  }
-
-  /* Card 3: Emerald / Sage Liquid Neon Glow */
-  .evidence-card:nth-child(3):hover {
-    transform: translateY(-8px) scale(1.02);
-    border-color: rgba(16, 185, 129, 0.8);
-    box-shadow: 0 16px 36px -6px rgba(16, 185, 129, 0.16),
-                0 0 28px rgba(52, 211, 153, 0.38),
-                inset 0 0 18px rgba(16, 185, 129, 0.06);
-  }
-
-  .evidence-card:hover::after {
-    left: 140%;
-  }
-
-  .evidence-card:active {
-    transform: translateY(-3px) scale(0.99);
+  .evidence-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-primary-border);
+    box-shadow: var(--shadow-md);
   }
 
   .evidence-header {
@@ -290,12 +245,6 @@ import SectionHeader from './ui/SectionHeader.astro';
     font-size: 1.85rem;
     font-weight: 800;
     line-height: 1;
-    transition: text-shadow 0.3s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  .evidence-card:hover .evidence-metric {
-    transform: scale(1.06);
-    text-shadow: 0 0 16px currentColor;
   }
 
   .evidence-title {
@@ -314,19 +263,13 @@ import SectionHeader from './ui/SectionHeader.astro';
     margin-bottom: 1.35rem;
   }
 
-  /* Liquid Visualizer Box */
+  /* Visualizer Box */
   .visualizer-box {
-    background-color: #f8fafc;
-    border: 1px solid rgba(226, 232, 240, 0.8);
+    background-color: var(--bg-subtle);
+    border: 1px solid var(--border-light);
     border-radius: var(--radius-md);
     padding: 0.875rem;
     margin-bottom: 1.35rem;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-  }
-
-  .evidence-card:hover .visualizer-box {
-    background-color: #ffffff;
-    border-color: rgba(203, 213, 225, 0.9);
   }
 
   .visualizer-labels {
@@ -339,76 +282,55 @@ import SectionHeader from './ui/SectionHeader.astro';
 
   .visualizer-bar {
     width: 100%;
-    height: 9px;
-    background-color: #e2e8f0;
+    height: 8px;
+    background-color: var(--border-light);
     border-radius: var(--radius-full);
     overflow: hidden;
     display: flex;
-    gap: 3px;
-    padding: 1px;
+    gap: 2px;
   }
 
   .bar-segment {
     height: 100%;
     border-radius: var(--radius-full);
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.4s ease;
-  }
-
-  .bar-segment::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    animation: liquidShimmer 2.5s infinite linear;
-  }
-
-  @keyframes liquidShimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
   }
 
   .bar-coral { 
-    background: linear-gradient(90deg, #f43f5e, #fb7185); 
-    box-shadow: 0 0 8px rgba(244, 63, 94, 0.4);
+    background-color: var(--color-coral); 
   }
   .bar-teal { 
-    background: linear-gradient(90deg, #0284c7, #00f2fe); 
-    box-shadow: 0 0 8px rgba(0, 242, 254, 0.4);
+    background-color: var(--color-primary); 
   }
   .bar-amber { 
-    background: linear-gradient(90deg, #d97706, #fbbf24); 
-    box-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
+    background-color: var(--color-amber); 
   }
   .bar-sage { 
-    background: linear-gradient(90deg, #059669, #34d399); 
-    box-shadow: 0 0 8px rgba(52, 211, 153, 0.4);
+    background-color: var(--color-sage); 
   }
   .bar-neutral { 
-    background-color: #cbd5e1; 
+    background-color: var(--border-medium); 
   }
 
   .evidence-footer {
     padding-top: 1rem;
-    border-top: 1px solid rgba(226, 232, 240, 0.8);
+    border-top: 1px solid var(--border-light);
     font-size: 0.775rem;
     color: var(--text-muted);
     line-height: 1.45;
   }
 
-  .text-teal { color: #0284c7; }
-  .text-amber { color: #d97706; }
-  .text-sage { color: #059669; }
-  .text-coral { color: #e11d48; }
+  .text-teal { color: var(--color-primary); }
+  .text-amber { color: var(--color-amber); }
+  .text-sage { color: var(--color-sage); }
+  .text-coral { color: var(--color-coral); }
 
   /* Comparison Matrix Styles */
   .comparison-wrapper {
-    background-color: #ffffff;
-    border: 1px solid rgba(226, 232, 240, 0.9);
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-light);
     border-radius: var(--radius-2xl);
     padding: 3.5rem 3rem;
-    box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow-sm);
   }
 
   .comparison-intro {
@@ -442,9 +364,7 @@ import SectionHeader from './ui/SectionHeader.astro';
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-                box-shadow 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-                border-color 0.4s ease;
+    transition: transform 200ms ease, box-shadow 200ms ease;
   }
 
   .card-traditional {
@@ -453,36 +373,20 @@ import SectionHeader from './ui/SectionHeader.astro';
   }
 
   .card-traditional:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px -4px rgba(244, 63, 94, 0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px -2px rgba(244, 63, 94, 0.1);
   }
 
-  /* Liquid Neon Emerald Card */
   .card-pluri {
-    background-color: #f0fdf4;
-    border: 2px solid #34d399;
-    box-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.15),
-                0 0 20px rgba(52, 211, 153, 0.25);
-    animation: neonBreathePluri 4s infinite alternate ease-in-out;
-  }
-
-  @keyframes neonBreathePluri {
-    0% {
-      box-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.15),
-                  0 0 16px rgba(52, 211, 153, 0.2);
-      border-color: #34d399;
-    }
-    100% {
-      box-shadow: 0 14px 38px -5px rgba(16, 185, 129, 0.22),
-                  0 0 28px rgba(52, 211, 153, 0.4);
-      border-color: #10b981;
-    }
+    background-color: var(--color-sage-light);
+    border: 1px solid var(--color-sage-border);
+    box-shadow: var(--shadow-sm);
   }
 
   .card-pluri:hover {
-    transform: translateY(-6px) scale(1.015);
-    box-shadow: 0 16px 42px -5px rgba(16, 185, 129, 0.25),
-                0 0 36px rgba(52, 211, 153, 0.45);
+    transform: translateY(-2px);
+    border-color: var(--color-sage);
+    box-shadow: var(--shadow-md);
   }
 
   .comparison-card-header {
@@ -506,24 +410,18 @@ import SectionHeader from './ui/SectionHeader.astro';
     justify-content: center;
     font-weight: 800;
     font-size: 1.05rem;
-    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  .card-pluri:hover .comparison-icon {
-    transform: scale(1.18) rotate(8deg);
-    box-shadow: 0 0 14px rgba(52, 211, 153, 0.6);
   }
 
   .icon-coral {
     background-color: #ffffff;
-    color: #e11d48;
-    border: 1px solid #fecdd3;
+    color: var(--color-coral);
+    border: 1px solid var(--color-coral-border);
   }
 
   .icon-sage {
     background-color: #ffffff;
-    color: #059669;
-    border: 1px solid #a7f3d0;
+    color: var(--color-sage);
+    border: 1px solid var(--color-sage-border);
   }
 
   .comparison-list {
