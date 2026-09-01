@@ -1,0 +1,254 @@
+---
+import Button from './ui/Button.astro';
+---
+
+<header class="clinical-header" id="mainHeader">
+  <div class="container clinical-header-inner">
+    <!-- Logo Institucional -->
+    <a href="#" class="clinical-logo" aria-label="Pluri Health - Início">
+      <img 
+        src="/branding/logo/pluri_health_icon_gradient.svg" 
+        alt="Pluri Health" 
+        class="clinical-logo-icon" 
+        width="34" 
+        height="34"
+      />
+      <span class="clinical-logo-text">Pluri <strong>Health</strong></span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="clinical-nav-desktop" aria-label="Navegação Principal">
+      <ul class="clinical-nav-list">
+        <li><a href="#evidencias" class="clinical-nav-link">Evidências</a></li>
+        <li><a href="#recursos" class="clinical-nav-link">Recursos Clínicos</a></li>
+        <li><a href="#planos" class="clinical-nav-link">Planos & Preços</a></li>
+        <li><a href="#faq" class="clinical-nav-link">Dúvidas</a></li>
+      </ul>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="clinical-header-actions">
+      <Button href="#planos" variant="primary" size="sm">
+        Começar Grátis
+      </Button>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button 
+        class="clinical-mobile-toggle" 
+        id="mobileMenuToggle" 
+        aria-label="Abrir menu de navegação" 
+        aria-expanded="false"
+        aria-controls="mobileMenuNav"
+      >
+        <svg class="icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Navigation & Backdrop -->
+  <div class="clinical-mobile-backdrop" id="mobileBackdrop" aria-hidden="true"></div>
+  <nav class="clinical-mobile-nav" id="mobileMenuNav" aria-label="Menu Mobile" aria-hidden="true">
+    <div class="container mobile-nav-container">
+      <ul class="mobile-nav-list">
+        <li><a href="#evidencias" class="mobile-nav-link">Evidências Científicas</a></li>
+        <li><a href="#recursos" class="mobile-nav-link">Recursos Clínicos</a></li>
+        <li><a href="#planos" class="mobile-nav-link">Planos & Preços</a></li>
+        <li><a href="#faq" class="mobile-nav-link">Dúvidas Frequentes</a></li>
+      </ul>
+      <div class="mobile-nav-action">
+        <Button href="#planos" variant="primary" class="w-full">
+          Começar Grátis sem Cartão
+        </Button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .clinical-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(251, 251, 250, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+    transition: background-color 200ms ease, border-color 200ms ease;
+  }
+
+  .clinical-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4.25rem;
+  }
+
+  .clinical-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: var(--text-primary);
+  }
+
+  .clinical-logo-icon {
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .clinical-logo-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  .clinical-logo-text strong {
+    font-weight: 800;
+    color: var(--color-primary);
+  }
+
+  .clinical-nav-desktop {
+    display: flex;
+    align-items: center;
+  }
+
+  .clinical-nav-list {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .clinical-nav-link {
+    font-size: 0.925rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: color 180ms ease;
+    padding: 0.5rem 0;
+    position: relative;
+  }
+
+  .clinical-nav-link:hover {
+    color: var(--color-primary);
+  }
+
+  .clinical-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+  }
+
+  .clinical-mobile-toggle {
+    display: none;
+    padding: 0.5rem;
+    color: var(--text-primary);
+    border-radius: var(--radius-sm);
+  }
+
+  .clinical-mobile-toggle .icon-close {
+    display: none;
+  }
+
+  .clinical-mobile-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    top: 4.25rem;
+    background-color: rgba(25, 33, 40, 0.4);
+    z-index: 98;
+  }
+
+  .clinical-mobile-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: var(--shadow-lg);
+    z-index: 99;
+    padding: 1.5rem 0;
+  }
+
+  .mobile-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .mobile-nav-link {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: block;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .w-full {
+    width: 100%;
+  }
+
+  @media (max-width: 860px) {
+    .clinical-nav-desktop {
+      display: none;
+    }
+    .clinical-mobile-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .clinical-header.is-open .clinical-mobile-backdrop {
+      display: block;
+    }
+    .clinical-header.is-open .clinical-mobile-nav {
+      display: block;
+    }
+    .clinical-header.is-open .clinical-mobile-toggle .icon-menu {
+      display: none;
+    }
+    .clinical-header.is-open .clinical-mobile-toggle .icon-close {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  const header = document.getElementById('mainHeader');
+  const toggleBtn = document.getElementById('mobileMenuToggle');
+  const backdrop = document.getElementById('mobileBackdrop');
+  const mobileNav = document.getElementById('mobileMenuNav');
+  const navLinks = document.querySelectorAll('.mobile-nav-link');
+
+  function toggleMenu() {
+    const isOpen = header?.classList.toggle('is-open');
+    const expanded = !!isOpen;
+    toggleBtn?.setAttribute('aria-expanded', String(expanded));
+    mobileNav?.setAttribute('aria-hidden', String(!expanded));
+    document.body.style.overflow = expanded ? 'hidden' : '';
+  }
+
+  function closeMenu() {
+    header?.classList.remove('is-open');
+    toggleBtn?.setAttribute('aria-expanded', 'false');
+    mobileNav?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  toggleBtn?.addEventListener('click', toggleMenu);
+  backdrop?.addEventListener('click', closeMenu);
+  navLinks.forEach(link => link.addEventListener('click', closeMenu));
+</script>

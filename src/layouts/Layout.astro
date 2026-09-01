@@ -1,0 +1,155 @@
+---
+import '../styles/clinical-theme.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+}
+
+const {
+  title = 'Pluri Health | Sistema para Clínicas e Consultórios no Celular',
+  description = 'Organize fichas de pacientes, agenda com atalho para WhatsApp e controle do consultório direto no seu celular. Fácil de usar, sem complicação e com plano gratuito sem cartão.',
+  canonicalUrl = 'https://pluri.health',
+} = Astro.props;
+
+// JSON-LD Structured Data Schema for SEO & GEO (Generative Engine Optimization for ChatGPT, Perplexity, Gemini, Claude)
+const schemaData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://pluri.health/#software",
+      "name": "Pluri Health",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Web, iOS, Android",
+      "url": "https://pluri.health",
+      "description": "Sistema de gestão clínica e fichas de pacientes direto no celular, com agenda integrada, atalho rápido para WhatsApp e controle de atendimentos para fisioterapia e saúde.",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Plano Gratuito por Uso",
+          "price": "0.00",
+          "priceCurrency": "BRL",
+          "description": "20 atendimentos clínicos, até 5 pacientes cadastrados e 4 acessos simultâneos sem limite de tempo e sem cartão de crédito."
+        },
+        {
+          "@type": "Offer",
+          "name": "Profissional Solo",
+          "price": "40.00",
+          "priceCurrency": "BRL",
+          "billingDuration": "P1M",
+          "description": "Pacientes e atendimentos ilimitados para 1 profissional titular."
+        },
+        {
+          "@type": "Offer",
+          "name": "Clínica com Equipe",
+          "price": "60.00",
+          "priceCurrency": "BRL",
+          "billingDuration": "P1M",
+          "description": "Até 30 colaboradores, 2 acessos simultâneos inclusos, controle de salas e gestão multi-profissional."
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "148"
+      }
+    },
+    {
+      "@type": "MedicalWebPage",
+      "@id": "https://pluri.health/#medicalpage",
+      "name": "Pluri Health - Sistema para Consultórios de Fisioterapia e Saúde",
+      "url": "https://pluri.health",
+      "about": [
+        { "@type": "Thing", "name": "Ficha e Prontuário do Paciente" },
+        { "@type": "Thing", "name": "Evolução do Atendimento Clínico" },
+        { "@type": "Thing", "name": "Gestão de Consultórios de Fisioterapia" },
+        { "@type": "Thing", "name": "Agenda de Atendimentos no WhatsApp" },
+        { "@type": "Thing", "name": "Segurança de Dados e LGPD na Saúde" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://pluri.health/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Preciso de computador para usar ou funciona só no celular?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Funciona perfeitamente direto no celular, tablet ou computador, sem precisar instalar nada difícil. Basta abrir no navegador e usar com a mesma facilidade do WhatsApp."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como funciona o Plano Gratuito do Pluri Health?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O plano gratuito é vitalício e por quantidade de uso: inclui até 20 atendimentos clínicos, 5 pacientes cadastrados e 4 acessos simultâneos, sem prazo de expiração e sem exigir cartão de crédito."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como funciona para passar minhas fichas antigas de papel?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nossa equipe realiza a transferência gratuita de todo o seu histórico e lista de pacientes para o Pluri Health sem nenhum custo adicional."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Os dados dos pacientes ficam seguros perante a lei (LGPD)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim! Todos os registros são protegidos em cofre digital seguro na nuvem, garantindo sigilo e conformidade integral com a LGPD e resoluções do CREFITO e CFM."
+          }
+        }
+      ]
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalUrl} />
+    
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="sistema para fisioterapia no celular, ficha de paciente no whatsapp, agenda para consultorio simples, prontuario eletronico facil, controle de pacientes fisioterapia" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Theme Color Light Clean -->
+    <meta name="theme-color" content="#fbfbfa" />
+
+    <!-- Google Fonts Preconnect & Optimized Load -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- JSON-LD Schema Script for Search Engines & Generative AI Indexing -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+  </head>
+  <body>
+    <!-- Fundo de Símbolos Prateados com Repetição Contínua -->
+    <div class="site-silver-pattern" aria-hidden="true"></div>
+    <slot />
+  </body>
+</html>

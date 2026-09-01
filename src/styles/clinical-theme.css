@@ -1,0 +1,399 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  color-scheme: light;
+
+  /* ==========================================================================
+     Surfaces & Neutral Backgrounds (Alinhado à Interface Real do Pluri Health)
+     ========================================================================== */
+  --bg-page: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f1f5f9;
+  --bg-muted: #e2e8f0;
+  --bg-card-hover: #f8fafc;
+
+  /* ==========================================================================
+     Typography & Contrast
+     ========================================================================== */
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-inverse: #ffffff;
+
+  /* ==========================================================================
+     Pluri Health Real Platform Palette
+     ========================================================================== */
+  /* Primary: Pluri Cyan / Blue */
+  --color-primary: #0284c7;
+  --color-primary-hover: #0369a1;
+  --color-primary-light: #e0f2fe;
+  --color-primary-border: #bae6fd;
+
+  /* Success / Active / WhatsApp: Emerald Green */
+  --color-sage: #059669;
+  --color-sage-hover: #047857;
+  --color-sage-light: #ecfdf5;
+  --color-sage-border: #a7f3d0;
+  --color-whatsapp: #25d366;
+  --color-whatsapp-bg: #dcfce7;
+  --color-whatsapp-border: #86efac;
+
+  /* Category Tags / Badges da Plataforma */
+  --color-purple: #7c3aed;
+  --color-purple-light: #ede9fe;
+  --color-purple-border: #ddd6fe;
+
+  --color-peach: #ea580c;
+  --color-peach-light: #ffedd5;
+  --color-peach-border: #fed7aa;
+
+  --color-amber: #d97706;
+  --color-amber-light: #fef3c7;
+  --color-amber-border: #fde68a;
+
+  --color-coral: #e11d48;
+  --color-coral-light: #ffe4e6;
+  --color-coral-border: #fecdd3;
+
+  /* ==========================================================================
+     Borders, Shadows & Geometry
+     ========================================================================== */
+  --border-light: #e2e8f0;
+  --border-medium: #cbd5e1;
+  --border-focus: #0284c7;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.25rem;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+  --shadow-card: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+}
+
+/* ==========================================================================
+   CSS Reset & Base Rules
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #f8fafc;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  color: var(--text-primary);
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   Fundo Sutil com Contornos dos Símbolos da Saúde (Subtle Silver Outline)
+   ========================================================================== */
+.site-silver-pattern {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url('/assets/medical-symbols-silver-outline.webp'), url('/assets/medical-symbols-silver-outline.png');
+  background-repeat: repeat;
+  background-size: 190px auto;
+  opacity: 0.15;
+  filter: contrast(1.05) brightness(0.96);
+}
+
+main,
+.clinical-header,
+.clinical-footer,
+.clinical-section {
+  position: relative;
+  z-index: 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   Accessibility & Focus States
+   ========================================================================== */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   Layout Containers & Grid Utilities
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.clinical-section {
+  padding: 5.5rem 0;
+  position: relative;
+}
+
+.clinical-section-alt {
+  background-color: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+@media (max-width: 768px) {
+  .clinical-section {
+    padding: 3.75rem 0;
+  }
+}
+
+/* ==========================================================================
+   UI Components: Buttons
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  padding: 0.75rem 1.6rem;
+  border-radius: var(--radius-md);
+  transition: all 180ms ease;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--text-inverse);
+  border: 1px solid var(--color-primary);
+  box-shadow: 0 2px 4px rgba(2, 132, 199, 0.2);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(2, 132, 199, 0.3);
+}
+
+.btn-secondary {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-medium);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-subtle);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.btn-sage {
+  background-color: var(--color-sage);
+  color: var(--text-inverse);
+  border: 1px solid var(--color-sage);
+}
+
+.btn-sage:hover {
+  background-color: var(--color-sage-hover);
+  border-color: var(--color-sage-hover);
+  transform: translateY(-1px);
+}
+
+.btn-sm {
+  padding: 0.5rem 1.1rem;
+  font-size: 0.875rem;
+}
+
+.btn-lg {
+  padding: 0.95rem 2rem;
+  font-size: 1.05rem;
+}
+
+/* ==========================================================================
+   UI Components: Badges & Tags
+   ========================================================================== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.2;
+  width: fit-content;
+}
+
+.badge-teal {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-hover);
+  border: 1px solid var(--color-primary-border);
+}
+
+.badge-sage {
+  background-color: var(--color-sage-light);
+  color: var(--color-sage);
+  border: 1px solid var(--color-sage-border);
+}
+
+.badge-purple {
+  background-color: var(--color-purple-light);
+  color: var(--color-purple);
+  border: 1px solid var(--color-purple-border);
+}
+
+.badge-peach {
+  background-color: var(--color-peach-light);
+  color: var(--color-peach);
+  border: 1px solid var(--color-peach-border);
+}
+
+.badge-amber {
+  background-color: var(--color-amber-light);
+  color: var(--color-amber);
+  border: 1px solid var(--color-amber-border);
+}
+
+.badge-coral {
+  background-color: var(--color-coral-light);
+  color: var(--color-coral);
+  border: 1px solid var(--color-coral-border);
+}
+
+.badge-neutral {
+  background-color: var(--bg-subtle);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+/* ==========================================================================
+   UI Components: Section Headers
+   ========================================================================== */
+.section-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 3.5rem auto;
+}
+
+.section-header-left {
+  text-align: left;
+  margin: 0 0 2.5rem 0;
+}
+
+.section-title {
+  font-size: clamp(1.85rem, 3.6vw, 2.65rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-top: 0.875rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.section-desc {
+  font-size: 1.075rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ==========================================================================
+   UI Components: Clinical Cards
+   ========================================================================== */
+.clinical-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-card);
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+
+.clinical-card:hover {
+  border-color: var(--color-primary-border);
+  box-shadow: var(--shadow-md);
+}
+
+/* ==========================================================================
+   Scrollbar Clean Styling
+   ========================================================================== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}

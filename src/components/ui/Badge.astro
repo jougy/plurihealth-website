@@ -1,0 +1,20 @@
+---
+interface Props {
+  variant?: 'teal' | 'sage' | 'amber' | 'coral' | 'neutral';
+  withDot?: boolean;
+  class?: string;
+}
+
+const {
+  variant = 'teal',
+  withDot = true,
+  class: className = '',
+} = Astro.props;
+
+const variantClass = `badge-${variant}`;
+---
+
+<span class={`badge ${variantClass} ${className}`}>
+  {withDot && <span class="badge-dot" aria-hidden="true" />}
+  <slot />
+</span>

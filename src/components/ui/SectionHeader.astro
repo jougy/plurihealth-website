@@ -1,0 +1,33 @@
+---
+import Badge from './Badge.astro';
+
+interface Props {
+  badgeText?: string;
+  badgeVariant?: 'teal' | 'sage' | 'amber' | 'coral' | 'neutral';
+  title: string;
+  subtitle?: string;
+  align?: 'center' | 'left';
+  class?: string;
+}
+
+const {
+  badgeText,
+  badgeVariant = 'teal',
+  title,
+  subtitle,
+  align = 'center',
+  class: className = '',
+} = Astro.props;
+
+const headerClass = align === 'left' ? 'section-header section-header-left' : 'section-header';
+---
+
+<div class={`${headerClass} ${className}`}>
+  {badgeText && (
+    <Badge variant={badgeVariant}>
+      {badgeText}
+    </Badge>
+  )}
+  <h2 class="section-title">{title}</h2>
+  {subtitle && <p class="section-desc">{subtitle}</p>}
+</div>

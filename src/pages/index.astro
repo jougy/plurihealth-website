@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import HeroSection from '../components/HeroSection.astro';
+import EvidenceSection from '../components/EvidenceSection.astro';
+import FeaturesSection from '../components/FeaturesSection.astro';
+import PricingSection from '../components/PricingSection.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Pluri Health | Sistema para Clínicas e Consultórios no Celular"
+  description="Chega de papelada. Anote a evolução do paciente em segundos, chame no WhatsApp em 1 clique e controle seu consultório direto no celular. Comece grátis sem cartão."
+>
+  <!-- Topbar & Navegação -->
+  <Header />
+
+  <main id="conteudo-principal">
+    <!-- A - ATENÇÃO: Proposta de Valor & Interface Simples no Celular -->
+    <HeroSection />
+
+    <!-- I - INTERESSE: Pesquisas Reais & Comparativo Antes x Depois -->
+    <EvidenceSection />
+
+    <!-- D - DESEJO: As 4 Facilidades da Plataforma (Fichas Rápidas, WhatsApp, Financeiro, Proteção) -->
+    <FeaturesSection />
+
+    <!-- A - AÇÃO: Planos Transparentes, Plano Gratuito por Uso & Dúvidas Frequentes -->
+    <PricingSection />
+  </main>
+
+  <!-- Rodapé Institucional -->
+  <Footer />
+</Layout>

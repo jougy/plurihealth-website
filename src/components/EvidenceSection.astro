@@ -1,0 +1,564 @@
+---
+import SectionHeader from './ui/SectionHeader.astro';
+---
+
+<section class="clinical-section clinical-section-alt" id="evidencias">
+  <div class="container">
+    
+    <!-- Section Header -->
+    <SectionHeader
+      badgeText="Estudos & Rotina de Quem Atende"
+      badgeVariant="teal"
+      title="O Custo Real da Desorganização no Consultório"
+      subtitle="Grandes pesquisas na área da saúde comprovam o que você sente na prática: a papelada e a falta de lembretes roubam seu tempo e diminuem o faturamento da sua clínica."
+    />
+
+    <!-- Scientific Evidence 3-Column Grid -->
+    <div class="evidence-grid">
+      
+      <!-- Card 1: Time Burden (2h : 1h) -->
+      <div class="evidence-card">
+        <div class="evidence-header">
+          <div class="evidence-source">
+            <span class="badge badge-teal">Tempo Gasto</span>
+            <span class="source-journal">Pesquisa Médica • Annals of Internal Medicine</span>
+          </div>
+          <div class="evidence-metric text-teal">2h : 1h</div>
+        </div>
+
+        <h3 class="evidence-title">
+          2 Horas Preenchendo Papéis para Cada 1 Hora com o Paciente
+        </h3>
+
+        <p class="evidence-desc">
+          Profissionais de saúde gastam quase metade do dia anotando fichas manuais, em vez de estarem atendendo e cuidando de mais pessoas.
+        </p>
+
+        <!-- Micro Distribution Visualizer -->
+        <div class="visualizer-box">
+          <div class="visualizer-labels">
+            <span class="text-coral"><strong>49,2%</strong> Anotando papéis</span>
+            <span class="text-teal"><strong>27,0%</strong> Atendimento</span>
+          </div>
+          <div class="visualizer-bar">
+            <div class="bar-segment bar-coral" style="width: 49.2%;"></div>
+            <div class="bar-segment bar-teal" style="width: 27%;"></div>
+            <div class="bar-segment bar-neutral" style="width: 23.8%;"></div>
+          </div>
+        </div>
+
+        <div class="evidence-footer">
+          <strong>Estudo realizado com:</strong> 57 profissionais durante 430 horas de atendimentos reais.
+        </div>
+      </div>
+
+      <!-- Card 2: Burnout (62%) -->
+      <div class="evidence-card">
+        <div class="evidence-header">
+          <div class="evidence-source">
+            <span class="badge badge-amber">Cansaço Mental</span>
+            <span class="source-journal">Relatório de Saúde • Medscape</span>
+          </div>
+          <div class="evidence-metric text-amber">62%</div>
+        </div>
+
+        <h3 class="evidence-title">
+          Papelada é a Causa Nº 1 de Cansaço e Estresse
+        </h3>
+
+        <p class="evidence-desc">
+          Levar fichas para terminar à noite em casa após o consultório é o principal motivo de esgotamento e desânimo entre os profissionais.
+        </p>
+
+        <!-- Micro Distribution Visualizer -->
+        <div class="visualizer-box">
+          <div class="visualizer-labels">
+            <span class="text-secondary">Sentem sobrecarga</span>
+            <span class="text-amber"><strong>62% dos profissionais</strong></span>
+          </div>
+          <div class="visualizer-bar">
+            <div class="bar-segment bar-amber" style="width: 62%;"></div>
+            <div class="bar-segment bar-neutral" style="width: 38%;"></div>
+          </div>
+        </div>
+
+        <div class="evidence-footer">
+          <strong>Estudo realizado com:</strong> 9.226 profissionais de saúde em 29 especialidades.
+        </div>
+      </div>
+
+      <!-- Card 3: Absenteeism & Financial Impact (-50%) -->
+      <div class="evidence-card">
+        <div class="evidence-header">
+          <div class="evidence-source">
+            <span class="badge badge-sage">Presença & Agenda</span>
+            <span class="source-journal">Revisão Clínica • Cochrane</span>
+          </div>
+          <div class="evidence-metric text-sage">-50%</div>
+        </div>
+
+        <h3 class="evidence-title">
+          Faltas Caem pela Metade com Lembretes e Contato Rápido
+        </h3>
+
+        <p class="evidence-desc">
+          Quando o paciente recebe um lembrete antes do horário da consulta, o número de faltas e buracos na sua grade de atendimentos despenca.
+        </p>
+
+        <!-- Micro Distribution Visualizer -->
+        <div class="visualizer-box">
+          <div class="visualizer-labels">
+            <span class="text-secondary">Redução de faltas</span>
+            <span class="text-sage"><strong>Até 50% menos ausências</strong></span>
+          </div>
+          <div class="visualizer-bar">
+            <div class="bar-segment bar-sage" style="width: 50%;"></div>
+            <div class="bar-segment bar-neutral" style="width: 50%;"></div>
+          </div>
+        </div>
+
+        <div class="evidence-footer">
+          <strong>Estudo realizado com:</strong> 6.615 pacientes acompanhados em consultas clínicas.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Comparative Matrix: Traditional vs Pluri Health -->
+    <div class="comparison-wrapper">
+      <div class="comparison-intro">
+        <h3 class="comparison-title">A Sua Rotina Antes e Depois do Pluri Health</h3>
+        <p class="comparison-subtitle">Veja a diferença entre continuar no papel ou usar o Pluri Health direto no seu celular:</p>
+      </div>
+
+      <div class="comparison-grid">
+        
+        <!-- Column 1: Rotina Tradicional -->
+        <div class="comparison-card card-traditional">
+          <div class="comparison-card-header text-coral">
+            <div class="comparison-icon icon-coral">✕</div>
+            <h4>No Papel e Cadernos Físicos</h4>
+          </div>
+          <ul class="comparison-list">
+            <li>
+              <span class="list-bullet text-coral">✕</span>
+              <span><strong>Fichas de papel que rasgam e se perdem:</strong> você perde o histórico do paciente e gasta horas anotando tudo à mão.</span>
+            </li>
+            <li>
+              <span class="list-bullet text-coral">✕</span>
+              <span><strong>Pacientes que esquecem e não aparecem:</strong> você perde tempo procurando o contato e salvando números para mandar mensagem.</span>
+            </li>
+            <li>
+              <span class="list-bullet text-coral">✕</span>
+              <span><strong>Financeiro desorganizado:</strong> você não sabe ao certo quantas sessões de pacote o paciente ainda tem direito ou quem já pagou.</span>
+            </li>
+            <li>
+              <span class="list-bullet text-coral">✕</span>
+              <span><strong>Risco de perder tudo:</strong> se um caderno molhar, sumir ou estragar, todo o histórico dos seus pacientes é perdido para sempre.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Com o Pluri Health -->
+        <div class="comparison-card card-pluri">
+          <div class="comparison-card-header text-sage">
+            <div class="comparison-icon icon-sage">✓</div>
+            <h4>Com o Pluri Health no Celular</h4>
+          </div>
+          <ul class="comparison-list">
+            <li>
+              <span class="list-bullet text-sage">✓</span>
+              <span><strong>Anotações rápidas em menos de 90 segundos:</strong> com poucos toques no celular você registra a evolução e acha qualquer paciente na hora.</span>
+            </li>
+            <li>
+              <span class="list-bullet text-sage">✓</span>
+              <span><strong>Botão de WhatsApp em 1 clique:</strong> chame o paciente e mande lembretes na hora sem precisar salvar o número na agenda do celular.</span>
+            </li>
+            <li>
+              <span class="list-bullet text-sage">✓</span>
+              <span><strong>Controle fácil de pagamentos e pacotes:</strong> veja na hora o saldo de sessões de cada pessoa e acompanhe seus recebimentos via PIX.</span>
+            </li>
+            <li>
+              <span class="list-bullet text-sage">✓</span>
+              <span><strong>Tudo seguro e protegido na nuvem (LGPD):</strong> mesmo se você trocar de celular ou o aparelho quebrar, suas fichas continuam salvas e seguras.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .evidence-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin-bottom: 4rem;
+  }
+
+  /* White Liquid Neon Card */
+  .evidence-card {
+    background-color: #ffffff;
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    border-radius: var(--radius-xl);
+    padding: 2rem 1.75rem;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+                border-color 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .evidence-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    transform: skewX(-20deg);
+    pointer-events: none;
+    transition: left 0.75s ease;
+  }
+
+  /* Card 1: Cyan / Primary Liquid Neon Glow */
+  .evidence-card:nth-child(1):hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(0, 242, 254, 0.8);
+    box-shadow: 0 16px 36px -6px rgba(2, 132, 199, 0.16),
+                0 0 28px rgba(0, 242, 254, 0.38),
+                inset 0 0 18px rgba(0, 242, 254, 0.06);
+  }
+
+  /* Card 2: Amber Liquid Neon Glow */
+  .evidence-card:nth-child(2):hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(245, 158, 11, 0.8);
+    box-shadow: 0 16px 36px -6px rgba(245, 158, 11, 0.16),
+                0 0 28px rgba(251, 146, 60, 0.38),
+                inset 0 0 18px rgba(245, 158, 11, 0.06);
+  }
+
+  /* Card 3: Emerald / Sage Liquid Neon Glow */
+  .evidence-card:nth-child(3):hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(16, 185, 129, 0.8);
+    box-shadow: 0 16px 36px -6px rgba(16, 185, 129, 0.16),
+                0 0 28px rgba(52, 211, 153, 0.38),
+                inset 0 0 18px rgba(16, 185, 129, 0.06);
+  }
+
+  .evidence-card:hover::after {
+    left: 140%;
+  }
+
+  .evidence-card:active {
+    transform: translateY(-3px) scale(0.99);
+  }
+
+  .evidence-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .evidence-source {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .source-journal {
+    font-size: 0.775rem;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .evidence-metric {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.85rem;
+    font-weight: 800;
+    line-height: 1;
+    transition: text-shadow 0.3s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .evidence-card:hover .evidence-metric {
+    transform: scale(1.06);
+    text-shadow: 0 0 16px currentColor;
+  }
+
+  .evidence-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--text-primary);
+    margin-bottom: 0.85rem;
+    letter-spacing: -0.015em;
+  }
+
+  .evidence-desc {
+    font-size: 0.925rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.35rem;
+  }
+
+  /* Liquid Visualizer Box */
+  .visualizer-box {
+    background-color: #f8fafc;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: var(--radius-md);
+    padding: 0.875rem;
+    margin-bottom: 1.35rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .evidence-card:hover .visualizer-box {
+    background-color: #ffffff;
+    border-color: rgba(203, 213, 225, 0.9);
+  }
+
+  .visualizer-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.775rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .visualizer-bar {
+    width: 100%;
+    height: 9px;
+    background-color: #e2e8f0;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    display: flex;
+    gap: 3px;
+    padding: 1px;
+  }
+
+  .bar-segment {
+    height: 100%;
+    border-radius: var(--radius-full);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s ease;
+  }
+
+  .bar-segment::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: liquidShimmer 2.5s infinite linear;
+  }
+
+  @keyframes liquidShimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .bar-coral { 
+    background: linear-gradient(90deg, #f43f5e, #fb7185); 
+    box-shadow: 0 0 8px rgba(244, 63, 94, 0.4);
+  }
+  .bar-teal { 
+    background: linear-gradient(90deg, #0284c7, #00f2fe); 
+    box-shadow: 0 0 8px rgba(0, 242, 254, 0.4);
+  }
+  .bar-amber { 
+    background: linear-gradient(90deg, #d97706, #fbbf24); 
+    box-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
+  }
+  .bar-sage { 
+    background: linear-gradient(90deg, #059669, #34d399); 
+    box-shadow: 0 0 8px rgba(52, 211, 153, 0.4);
+  }
+  .bar-neutral { 
+    background-color: #cbd5e1; 
+  }
+
+  .evidence-footer {
+    padding-top: 1rem;
+    border-top: 1px solid rgba(226, 232, 240, 0.8);
+    font-size: 0.775rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+
+  .text-teal { color: #0284c7; }
+  .text-amber { color: #d97706; }
+  .text-sage { color: #059669; }
+  .text-coral { color: #e11d48; }
+
+  /* Comparison Matrix Styles */
+  .comparison-wrapper {
+    background-color: #ffffff;
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: var(--radius-2xl);
+    padding: 3.5rem 3rem;
+    box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.05);
+  }
+
+  .comparison-intro {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 3rem auto;
+  }
+
+  .comparison-title {
+    font-size: clamp(1.6rem, 3vw, 2.25rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.65rem;
+    letter-spacing: -0.025em;
+  }
+
+  .comparison-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+  }
+
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .comparison-card {
+    border-radius: var(--radius-xl);
+    padding: 2.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                border-color 0.4s ease;
+  }
+
+  .card-traditional {
+    background-color: #fff1f2;
+    border: 1px solid #fecdd3;
+  }
+
+  .card-traditional:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px -4px rgba(244, 63, 94, 0.12);
+  }
+
+  /* Liquid Neon Emerald Card */
+  .card-pluri {
+    background-color: #f0fdf4;
+    border: 2px solid #34d399;
+    box-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.15),
+                0 0 20px rgba(52, 211, 153, 0.25);
+    animation: neonBreathePluri 4s infinite alternate ease-in-out;
+  }
+
+  @keyframes neonBreathePluri {
+    0% {
+      box-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.15),
+                  0 0 16px rgba(52, 211, 153, 0.2);
+      border-color: #34d399;
+    }
+    100% {
+      box-shadow: 0 14px 38px -5px rgba(16, 185, 129, 0.22),
+                  0 0 28px rgba(52, 211, 153, 0.4);
+      border-color: #10b981;
+    }
+  }
+
+  .card-pluri:hover {
+    transform: translateY(-6px) scale(1.015);
+    box-shadow: 0 16px 42px -5px rgba(16, 185, 129, 0.25),
+                0 0 36px rgba(52, 211, 153, 0.45);
+  }
+
+  .comparison-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .comparison-card-header h4 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: inherit;
+  }
+
+  .comparison-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.05rem;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .card-pluri:hover .comparison-icon {
+    transform: scale(1.18) rotate(8deg);
+    box-shadow: 0 0 14px rgba(52, 211, 153, 0.6);
+  }
+
+  .icon-coral {
+    background-color: #ffffff;
+    color: #e11d48;
+    border: 1px solid #fecdd3;
+  }
+
+  .icon-sage {
+    background-color: #ffffff;
+    color: #059669;
+    border: 1px solid #a7f3d0;
+  }
+
+  .comparison-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+  }
+
+  .comparison-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    line-height: 1.55;
+  }
+
+  .list-bullet {
+    font-weight: 800;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  @media (max-width: 960px) {
+    .evidence-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .comparison-grid {
+      grid-template-columns: 1fr;
+    }
+    .comparison-wrapper {
+      padding: 2rem 1.5rem;
+    }
+  }
+</style>

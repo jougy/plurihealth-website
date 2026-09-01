@@ -1,0 +1,799 @@
+---
+import SectionHeader from './ui/SectionHeader.astro';
+import Button from './ui/Button.astro';
+import Badge from './ui/Badge.astro';
+---
+
+<section class="clinical-section clinical-section-alt" id="planos">
+  <div class="container">
+    
+    <!-- Section Header -->
+    <SectionHeader
+      badgeText="Preços Claros & Sem Pegadinhas"
+      badgeVariant="teal"
+      title="O tamanho perfeito para o momento do seu consultório"
+      subtitle="Sem taxa de adesão, sem multas e com migração gratuita das suas fichas antigas de papel feita pela nossa equipe."
+    />
+
+    <!-- Permanent Free Tier Banner (Usage-Based Lifetime) -->
+    <div class="free-tier-banner">
+      <div class="free-tier-left">
+        <div class="free-tier-icon" aria-hidden="true">✨</div>
+        <div>
+          <div class="free-tier-tag">Plano Gratuito Vitalício</div>
+          <h3 class="free-tier-title">Comece Grátis por Quantidade de Atendimentos • Sem Cartão</h3>
+          <p class="free-tier-desc">
+            Cadastre até <strong>5 pacientes</strong>, faça até <strong>20 atendimentos</strong> e tenha até <strong>4 acessos ao mesmo tempo</strong> sem prazo de expiração e sem precisar colocar cartão.
+          </p>
+        </div>
+      </div>
+      <div class="free-tier-action">
+        <Button href="https://pluri.health/planos" variant="primary" size="lg">
+          Criar Conta Gratuita
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </Button>
+      </div>
+    </div>
+
+    <!-- Billing Cycle Selector (Anual / Trimestral / Mensal) -->
+    <div class="cycle-selector-wrapper">
+      <div class="cycle-selector" role="group" aria-label="Seletor de ciclo de pagamento">
+        <button type="button" class="cycle-btn active" data-cycle="annual">
+          <span>Anual</span>
+          <span class="cycle-discount-badge">-25% OFF</span>
+        </button>
+        <button type="button" class="cycle-btn" data-cycle="quarterly">
+          <span>Trimestral</span>
+          <span class="cycle-discount-badge badge-subtle">-10% OFF</span>
+        </button>
+        <button type="button" class="cycle-btn" data-cycle="monthly">
+          <span>Mensal</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Official Pricing Cards -->
+    <div class="pricing-cards-grid">
+      
+      <!-- Plan 1: Profissional Solo -->
+      <div class="pricing-card">
+        <div>
+          <div class="plan-header">
+            <Badge variant="teal">1 Profissional Titular</Badge>
+            <span class="plan-subtitle-tag">Atendimento Solo</span>
+          </div>
+
+          <h3 class="plan-title">Profissional Solo</h3>
+          <p class="plan-desc">
+            Ideal para fisioterapeutas e profissionais autônomos que atendem em consultório próprio ou domiciliar.
+          </p>
+
+          <!-- Price Box -->
+          <div class="price-box">
+            <div class="price-main">
+              <span class="currency">R$</span>
+              <span class="amount" id="soloAmount">40,00</span>
+              <span class="period" id="soloPeriod">/mês</span>
+            </div>
+            <div class="price-details">
+              <span id="soloTotal">Total: R$ 480,00/ano</span>
+              <span class="pix-badge" id="soloPix">PIX: R$ 456,00 (-5%)</span>
+            </div>
+          </div>
+
+          <ul class="plan-features">
+            <li><span class="check-icon">✓</span> <strong>1 Profissional de saúde titular</strong></li>
+            <li><span class="check-icon">✓</span> 1 Acesso simultâneo no celular ou computador</li>
+            <li><span class="check-icon">✓</span> <strong>Pacientes e atendimentos ilimitados</strong></li>
+            <li><span class="check-icon">✓</span> Ficha de evolução rápida e cadastro completo</li>
+            <li><span class="check-icon">✓</span> Agenda com atalho para WhatsApp em 1 clique</li>
+            <li><span class="check-icon">✓</span> Controle de pacotes de sessões e recibos</li>
+            <li><span class="check-icon">✓</span> Fichas salvas em segurança dentro da lei (LGPD)</li>
+          </ul>
+        </div>
+
+        <div class="plan-cta">
+          <Button href="https://pluri.health/planos" variant="secondary" class="w-full">
+            Contratar Profissional Solo
+          </Button>
+        </div>
+      </div>
+
+      <!-- Plan 2: Clínica com Equipe (Featured) -->
+      <div class="pricing-card pricing-card-featured">
+        <div>
+          <div class="plan-header">
+            <Badge variant="sage">★ Mais Escolhido</Badge>
+            <span class="plan-subtitle-tag text-sage">Recomendado</span>
+          </div>
+
+          <h3 class="plan-title">Clínica com Equipe</h3>
+          <p class="plan-desc">
+            Para clínicas com recepcionistas, múltiplos fisioterapeutas, pilates e salas compartilhadas.
+          </p>
+
+          <!-- Price Box -->
+          <div class="price-box price-box-featured">
+            <div class="price-main">
+              <span class="currency text-sage">R$</span>
+              <span class="amount text-sage" id="clinicAmount">60,00</span>
+              <span class="period" id="clinicPeriod">/mês</span>
+            </div>
+            <div class="price-details">
+              <span id="clinicTotal">Total: R$ 720,00/ano</span>
+              <span class="pix-badge" id="clinicPix">PIX: R$ 684,00 (-5%)</span>
+            </div>
+          </div>
+
+          <ul class="plan-features">
+            <li><span class="check-icon">✓</span> <strong>Equipe ilimitada (até 30 vagas base)</strong></li>
+            <li><span class="check-icon">✓</span> <strong>2 Acessos ao mesmo tempo inclusos</strong> (+extras se precisar)</li>
+            <li><span class="check-icon">✓</span> <strong>Pacientes e atendimentos ilimitados</strong></li>
+            <li><span class="check-icon">✓</span> Controle de equipe: escolha o que cada pessoa pode ver</li>
+            <li><span class="check-icon">✓</span> Agendas compartilhadas e divisão por salas</li>
+            <li><span class="check-icon">✓</span> Suporte humanizado direto no WhatsApp</li>
+            <li><span class="check-icon">✓</span> <strong>Passamos suas fichas de papel de graça</strong></li>
+          </ul>
+        </div>
+
+        <div class="plan-cta">
+          <Button href="https://pluri.health/planos" variant="sage" class="w-full">
+            Contratar Clínica com Equipe
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </Button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Semantic Native FAQ Accordion (<details> & <summary>) -->
+    <div class="faq-section" id="faq">
+      <div class="faq-header">
+        <Badge variant="neutral">Dúvidas Frequentes</Badge>
+        <h3 class="faq-title">Perguntas & Respostas</h3>
+        <p class="faq-subtitle">Tudo o que você precisa saber para começar a usar no seu consultório hoje mesmo.</p>
+      </div>
+
+      <div class="faq-accordion-list">
+        
+        <details class="faq-item" open>
+          <summary class="faq-question">
+            <span>Preciso de computador para usar ou funciona só no celular?</span>
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            Funciona perfeitamente direto no seu celular (smartphone), tablet ou computador! Você não precisa instalar programas complicados nem ter um computador no consultório. Basta abrir o site no navegador do celular e usar tão fácil quanto o WhatsApp.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>Como funciona o Plano Gratuito por Uso?</span>
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            Nosso plano gratuito é vitalício por quantidade de uso: você ganha 20 atendimentos clínicos para usar com seus pacientes, cadastrar até 5 pessoas e ter até 4 acessos ao mesmo tempo. Não há prazo limite de dias para expirar e você não precisa colocar nenhum cartão de crédito para começar.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>Como funciona para passar minhas fichas antigas de papel para o sistema?</span>
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            Nossa equipe de suporte cuida disso para você de forma 100% gratuita! Você pode nos enviar fotos das suas fichas de papel, listas ou planilhas que nós cadastramos seus pacientes para você já começar a atender sem nenhum retrabalho.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>Os dados dos pacientes ficam seguros perante a lei (LGPD)?</span>
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            Sim! O Pluri Health guarda todas as informações em um cofre digital protegido na internet. Só você e as pessoas que você autorizar têm acesso. Isso garante total sigilo e proteção jurídica para o seu consultório perante a Lei Geral de Proteção de Dados (LGPD) e os conselhos de classe.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>Como funciona o desconto de 5% no pagamento via PIX?</span>
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            Todos os planos pagos (Mensal, Trimestral ou Anual) recebem 5% de desconto automático para pagamento via PIX (usando QR Code ou chave Copia e Cola) direto na hora de assinar.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>Posso adicionar mais fisioterapeutas ou secretárias depois?</span>
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            Com certeza! No plano Clínica com Equipe você pode cadastrar toda a sua equipe (até 30 pessoas) e aumentar a quantidade de acessos simultâneos a qualquer momento conforme a clínica for crescendo.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>Como funciona o link de pré-cadastro pelo WhatsApp?</span>
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            Você gera um link exclusivo para o paciente em 1 clique e envia pelo WhatsApp. O paciente abre no próprio celular e preenche os dados cadastrais antes da consulta. Para total sigilo e segurança (LGPD), a ficha só é desbloqueada quando ele digita os primeiros dígitos do CPF cadastrado.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>Tem contrato de fidelidade ou multa se eu quiser cancelar?</span>
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            Não! Sem fidelidade e sem nenhuma multa. Você é livre para trocar de plano ou cancelar sua assinatura a qualquer momento com apenas 1 clique no painel da sua clínica.
+          </div>
+        </details>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* White Liquid Neon Free Tier Banner */
+  .free-tier-banner {
+    background-color: #ffffff;
+    border: 2px solid #34d399;
+    border-radius: var(--radius-2xl);
+    padding: 2.5rem 2.75rem;
+    box-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.15),
+                0 0 24px rgba(52, 211, 153, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 3.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+                border-color 0.45s ease;
+    animation: neonBreatheFree 4s infinite alternate ease-in-out;
+  }
+
+  @keyframes neonBreatheFree {
+    0% {
+      box-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.14),
+                  0 0 18px rgba(52, 211, 153, 0.2);
+      border-color: #34d399;
+    }
+    100% {
+      box-shadow: 0 16px 40px -5px rgba(16, 185, 129, 0.22),
+                  0 0 32px rgba(52, 211, 153, 0.4);
+      border-color: #10b981;
+    }
+  }
+
+  .free-tier-banner:hover {
+    transform: translateY(-6px) scale(1.012);
+    box-shadow: 0 20px 48px -6px rgba(16, 185, 129, 0.28),
+                0 0 40px rgba(52, 211, 153, 0.5);
+  }
+
+  .free-tier-banner:active {
+    transform: translateY(-2px) scale(0.99);
+  }
+
+  .free-tier-left {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+  }
+
+  .free-tier-icon {
+    width: 3.75rem;
+    height: 3.75rem;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+    color: #059669;
+    font-size: 1.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 0 16px rgba(52, 211, 153, 0.4);
+    animation: jellyFloat 3s infinite alternate ease-in-out;
+  }
+
+  @keyframes jellyFloat {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-4px) rotate(-3deg) scale(1.05); }
+    100% { transform: translateY(0px) rotate(0deg); }
+  }
+
+  .free-tier-tag {
+    font-size: 0.775rem;
+    font-weight: 800;
+    color: #059669;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+  }
+
+  .free-tier-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.02em;
+  }
+
+  .free-tier-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    max-width: 620px;
+  }
+
+  .free-tier-action {
+    flex-shrink: 0;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .free-tier-action:hover {
+    transform: scale(1.04);
+  }
+
+  /* Liquid Cycle Selector */
+  .cycle-selector-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .cycle-selector {
+    background-color: #ffffff;
+    border: 1px solid rgba(203, 213, 225, 0.8);
+    padding: 0.4rem;
+    border-radius: var(--radius-full);
+    display: flex;
+    gap: 0.35rem;
+    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  .cycle-btn {
+    padding: 0.65rem 1.5rem;
+    border-radius: var(--radius-full);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    cursor: pointer;
+  }
+
+  .cycle-btn:hover {
+    color: var(--text-primary);
+    transform: scale(1.03);
+  }
+
+  .cycle-btn:active {
+    transform: scale(0.97);
+  }
+
+  .cycle-btn.active {
+    background: linear-gradient(135deg, #0284c7, #00c6ff);
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.6), 0 4px 14px rgba(2, 132, 199, 0.4);
+    transform: scale(1.02);
+  }
+
+  .cycle-discount-badge {
+    font-size: 0.7rem;
+    background-color: rgba(255, 255, 255, 0.28);
+    padding: 0.15rem 0.55rem;
+    border-radius: var(--radius-full);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .badge-subtle {
+    background-color: #e0f2fe;
+    color: #0284c7;
+  }
+
+  .cycle-btn.active .badge-subtle {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+  }
+
+  /* Pricing Cards Grid - White Liquid Neon */
+  .pricing-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.25rem;
+    margin-bottom: 5.5rem;
+  }
+
+  .pricing-card {
+    background-color: #ffffff;
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    border-radius: var(--radius-2xl);
+    padding: 2.75rem 2.5rem;
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+                border-color 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(0, 242, 254, 0.85);
+    box-shadow: 0 20px 48px -6px rgba(2, 132, 199, 0.2),
+                0 0 32px rgba(0, 242, 254, 0.38),
+                inset 0 0 20px rgba(0, 242, 254, 0.05);
+  }
+
+  .pricing-card:active {
+    transform: translateY(-4px) scale(0.99);
+  }
+
+  /* Featured Card with Constant Neon Breathing Glow */
+  .pricing-card-featured {
+    border: 2px solid #10b981;
+    box-shadow: 0 16px 40px -6px rgba(16, 185, 129, 0.22),
+                0 0 28px rgba(52, 211, 153, 0.35);
+    animation: neonBreatheFeatured 4s infinite alternate ease-in-out;
+  }
+
+  @keyframes neonBreatheFeatured {
+    0% {
+      box-shadow: 0 16px 40px -6px rgba(16, 185, 129, 0.2),
+                  0 0 24px rgba(52, 211, 153, 0.3);
+      border-color: #34d399;
+    }
+    100% {
+      box-shadow: 0 22px 52px -6px rgba(16, 185, 129, 0.3),
+                  0 0 38px rgba(52, 211, 153, 0.5);
+      border-color: #10b981;
+    }
+  }
+
+  .pricing-card-featured:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 26px 58px -6px rgba(16, 185, 129, 0.35),
+                0 0 45px rgba(52, 211, 153, 0.55);
+  }
+
+  .plan-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.15rem;
+  }
+
+  .plan-subtitle-tag {
+    font-size: 0.775rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  .plan-title {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .plan-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 1.5rem;
+    min-height: 44px;
+  }
+
+  /* Price Box */
+  .price-box {
+    background-color: #f8fafc;
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: var(--radius-lg);
+    padding: 1.35rem 1.5rem;
+    margin-bottom: 1.85rem;
+    transition: all 0.35s ease;
+  }
+
+  .pricing-card:hover .price-box {
+    background-color: #ffffff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  }
+
+  .price-box-featured {
+    border-color: #a7f3d0;
+    background-color: #f0fdf4;
+  }
+
+  .price-main {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+  }
+
+  .currency {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--text-secondary);
+  }
+
+  .amount {
+    font-family: 'Outfit', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1;
+    transition: text-shadow 0.3s ease;
+  }
+
+  .pricing-card:hover .amount {
+    text-shadow: 0 0 16px rgba(2, 132, 199, 0.4);
+  }
+
+  .pricing-card-featured:hover .amount {
+    text-shadow: 0 0 16px rgba(16, 185, 129, 0.5);
+  }
+
+  .period {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  .price-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.85rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  .pix-badge {
+    color: #059669;
+    font-weight: 800;
+    background-color: #dcfce7;
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-full);
+  }
+
+  .plan-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.95rem;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    margin-bottom: 2.25rem;
+  }
+
+  .plan-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    line-height: 1.45;
+  }
+
+  .check-icon {
+    color: #059669;
+    font-weight: 800;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+  }
+
+  .plan-cta {
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .plan-cta:hover {
+    transform: scale(1.03);
+  }
+
+  .plan-cta:active {
+    transform: scale(0.98);
+  }
+
+  .w-full {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* FAQ Styles with Liquid Neon Touch */
+  .faq-section {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .faq-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .faq-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.025em;
+  }
+
+  .faq-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+  }
+
+  .faq-accordion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-item {
+    background-color: #ffffff;
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .faq-item:hover {
+    border-color: rgba(0, 242, 254, 0.6);
+    box-shadow: 0 8px 20px -2px rgba(2, 132, 199, 0.12), 0 0 16px rgba(0, 242, 254, 0.25);
+    transform: translateY(-2px);
+  }
+
+  .faq-item[open] {
+    border-color: #0284c7;
+    box-shadow: 0 10px 25px -3px rgba(2, 132, 199, 0.15), 0 0 20px rgba(0, 242, 254, 0.3);
+  }
+
+  .faq-question {
+    padding: 1.35rem 1.65rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-icon {
+    color: var(--text-muted);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .faq-item[open] .faq-icon {
+    transform: rotate(180deg) scale(1.15);
+    color: #0284c7;
+  }
+
+  .faq-answer {
+    padding: 0 1.65rem 1.5rem 1.65rem;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 900px) {
+    .free-tier-banner {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 2rem 1.75rem;
+    }
+    .free-tier-action {
+      width: 100%;
+    }
+    .free-tier-action :global(.btn) {
+      width: 100%;
+    }
+    .pricing-cards-grid {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .free-tier-banner {
+      padding: 1.75rem 1.5rem;
+    }
+    .free-tier-left {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .pricing-card {
+      padding: 2rem 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  // Official Pricing Engine Sourced from Obsidian Vault & subscriptionPricing.ts
+  const PRICING = {
+    annual: {
+      solo: { amount: "40,00", period: "/mês", total: "Total: R$ 480,00/ano", pix: "PIX: R$ 456,00 (-5%)" },
+      clinic: { amount: "60,00", period: "/mês", total: "Total: R$ 720,00/ano", pix: "PIX: R$ 684,00 (-5%)" }
+    },
+    quarterly: {
+      solo: { amount: "48,00", period: "/mês", total: "Total: R$ 144,00/tri", pix: "PIX: R$ 136,80 (-5%)" },
+      clinic: { amount: "72,00", period: "/mês", total: "Total: R$ 216,00/tri", pix: "PIX: R$ 205,20 (-5%)" }
+    },
+    monthly: {
+      solo: { amount: "52,00", period: "/mês", total: "Total: R$ 52,00/mês", pix: "PIX: R$ 49,40 (-5%)" },
+      clinic: { amount: "78,00", period: "/mês", total: "Total: R$ 78,00/mês", pix: "PIX: R$ 74,10 (-5%)" }
+    }
+  };
+
+  const cycleBtns = document.querySelectorAll('.cycle-btn');
+  const soloAmount = document.getElementById('soloAmount');
+  const soloPeriod = document.getElementById('soloPeriod');
+  const soloTotal = document.getElementById('soloTotal');
+  const soloPix = document.getElementById('soloPix');
+
+  const clinicAmount = document.getElementById('clinicAmount');
+  const clinicPeriod = document.getElementById('clinicPeriod');
+  const clinicTotal = document.getElementById('clinicTotal');
+  const clinicPix = document.getElementById('clinicPix');
+
+  cycleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cycle = btn.getAttribute('data-cycle');
+      if (!cycle || !PRICING[cycle as keyof typeof PRICING]) return;
+
+      cycleBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const data = PRICING[cycle as keyof typeof PRICING];
+      if (soloAmount) soloAmount.textContent = data.solo.amount;
+      if (soloPeriod) soloPeriod.textContent = data.solo.period;
+      if (soloTotal) soloTotal.textContent = data.solo.total;
+      if (soloPix) soloPix.textContent = data.solo.pix;
+
+      if (clinicAmount) clinicAmount.textContent = data.clinic.amount;
+      if (clinicPeriod) clinicPeriod.textContent = data.clinic.period;
+      if (clinicTotal) clinicTotal.textContent = data.clinic.total;
+      if (clinicPix) clinicPix.textContent = data.clinic.pix;
+    });
+  });
+</script>
