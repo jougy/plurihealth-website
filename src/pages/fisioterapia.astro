@@ -1,0 +1,626 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import SideIndexNav from '../components/SideIndexNav.astro';
+
+const navItems = [
+  { id: 'inicio', label: 'INÍCIO' },
+  { id: 'recursos-fisio', label: 'RECURSOS' },
+  { id: 'comparativo', label: 'COMPARAÇÃO' },
+  { id: 'planos-fisio', label: 'COMECE AGORA' },
+];
+---
+
+<Layout 
+  title="Pluri Fisio | O Software Feito Exclusivamente para Fisioterapeutas"
+  description="Fichas ortopédicas, escala de dor EVA, controle de pacotes de sessões e WhatsApp em 1 clique direto no seu celular. Comece com 20 atendimentos grátis sem cartão de crédito."
+>
+  <!-- Main Header -->
+  <Header />
+
+  <!-- Lateral Index Navigation (Inspired by wil4it.com) -->
+  <SideIndexNav items={navItems} />
+
+  <!-- Secondary Product Sub-Nav (Apple Style) -->
+  <div class="product-subnav">
+    <div class="container product-subnav-inner">
+      <div class="subnav-left">
+        <span class="subnav-product-title">Pluri Fisio</span>
+        <span class="subnav-badge">Edição Fisioterapia</span>
+      </div>
+      <div class="subnav-right">
+        <a href="#recursos-fisio" class="subnav-link">Recursos</a>
+        <a href="#comparativo" class="subnav-link">Antes x Depois</a>
+        <a href="#planos-fisio" class="subnav-link">Preços</a>
+        <a href="https://pluri.health/planos" target="_blank" rel="noopener" class="btn btn-pill btn-pill-dark btn-sm">
+          Começar Grátis
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- Screen 1: Fisio Hero Section (100vh Centered) -->
+    <section class="viewport-section fisio-hero-section" id="inicio">
+      <div class="fisio-hero-inner">
+        
+        <div class="fisio-hero-tag-wrap">
+          <span class="fisio-pill-tag">EDIÇÃO EXCLUSIVA PARA FISIOTERAPIA</span>
+        </div>
+
+        <h1 class="fisio-hero-title">
+          Projetado para quem reabilita vidas.
+        </h1>
+
+        <p class="fisio-hero-subtitle">
+          Evolução em 90 segundos na maca, testes ortopédicos e contato direto no WhatsApp. Tudo no celular.
+        </p>
+
+        <div class="fisio-hero-actions">
+          <a href="https://pluri.health/planos" target="_blank" rel="noopener" class="btn btn-pill btn-pill-dark btn-lg">
+            Experimentar no Consultório
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </a>
+          <a href="#recursos-fisio" class="btn btn-pill btn-pill-outline btn-lg">
+            Ver Recursos Clínicos
+          </a>
+        </div>
+
+        <div class="hero-trust-bullets">
+          <span>✨ 20 atendimentos gratuitos</span>
+          <span>•</span>
+          <span>Sem cartão de crédito</span>
+          <span>•</span>
+          <span>Passamos suas fichas de papel de graça</span>
+        </div>
+
+        <!-- Clean Exam Image with Smooth Fade to Background (Never Stretched) -->
+        <div class="fisio-img-box">
+          <img 
+            src="/images/fisio_detail_exam.jpg" 
+            alt="Avaliação de paciente na maca em consultório de fisioterapia" 
+            class="fisio-clean-photo img-fade-bottom" 
+            loading="eager"
+          />
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Screen 2: 4 Clinical Pillars (100vh Centered) -->
+    <section class="viewport-section fisio-pillars-section" id="recursos-fisio">
+      <div class="pillars-inner-container">
+        
+        <div class="pillars-header-compact">
+          <span class="fisio-pill-tag">RECURSOS CLÍNICOS</span>
+          <h2 class="pillars-title-compact">
+            Tudo o que você precisa na maca. Sem telas complicadas.
+          </h2>
+          <p class="pillars-desc-compact">
+            Construído ouvindo a rotina real de consultórios e estúdios de fisioterapia e reabilitação.
+          </p>
+        </div>
+
+        <div class="pillars-grid-compact">
+          <div class="pillar-mini-card">
+            <div class="pillar-ico">📋</div>
+            <h4>Anamneses Ortopédicas</h4>
+            <p>Fichas prontas de Traumato, Esportiva, Neuro e RPG com testes consagrados.</p>
+          </div>
+
+          <div class="pillar-mini-card">
+            <div class="pillar-ico">🔢</div>
+            <h4>Controle de Pacotes</h4>
+            <p>Contador automático: "Sessão 6 de 10" com aviso inteligente de renovação.</p>
+          </div>
+
+          <div class="pillar-mini-card">
+            <div class="pillar-ico">📲</div>
+            <h4>WhatsApp em 1 Clique</h4>
+            <p>Envie orientações e exercícios domiciliares sem misturar contatos na agenda pessoal.</p>
+          </div>
+
+          <div class="pillar-mini-card">
+            <div class="pillar-ico">🛡️</div>
+            <h4>Respaldo CREFITO & LGPD</h4>
+            <p>Histórico inalterável com data e hora para total segurança ética e legal.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Screen 3: Comparison Before x After (100vh Centered) -->
+    <section class="viewport-section fisio-comp-section" id="comparativo">
+      <div class="comp-inner-container">
+        
+        <div class="comp-header-compact">
+          <span class="fisio-pill-tag">A TRANSFORMAÇÃO</span>
+          <h2 class="comp-title-compact">O fim da papelada acumulada.</h2>
+        </div>
+
+        <div class="comp-grid-compact">
+          <div class="comp-card-compact card-before">
+            <span class="badge-tag-bad">Como era antes (Papel & Planilhas)</span>
+            <ul>
+              <li>❌ Pastas volumosas e fichas rasgando</li>
+              <li>❌ Histórico antigo difícil de achar na pressa</li>
+              <li>❌ Levar trabalho para casa para passar a limpo</li>
+              <li>❌ Contar na mão as sessões restantes do pacote</li>
+              <li>❌ WhatsApp pessoal lotado de pacientes</li>
+            </ul>
+          </div>
+
+          <div class="comp-card-compact card-after">
+            <span class="badge-tag-good">Com o Pluri Fisio no Celular</span>
+            <ul>
+              <li>✨ Ficha concluída em 90 segundos direto na maca</li>
+              <li>✨ Histórico completo na palma da mão</li>
+              <li>✨ Atendimento encerrado, evolução salva na nuvem</li>
+              <li>✨ Contador automático com alerta de renovação</li>
+              <li>✨ WhatsApp em 1 clique sem salvar contato</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Screen 4: Direct Conversion CTA (100vh Centered) -->
+    <section class="viewport-section fisio-cta-section" id="planos-fisio">
+      <div class="cta-inner-container">
+        
+        <div class="fisio-cta-box-compact">
+          <span class="fisio-pill-tag">COMECE AGORA</span>
+          <h2 class="cta-title-giant">Seu consultório na palma da mão.</h2>
+          <p class="cta-subhead-text">
+            Crie sua conta agora e ganhe 20 atendimentos gratuitos para testar na sua rotina real. Sem cartão de crédito.
+          </p>
+
+          <div class="cta-btns-row">
+            <a href="https://pluri.health/planos" target="_blank" rel="noopener" class="btn btn-pill btn-pill-dark btn-lg">
+              Criar Conta Gratuita sem Cartão
+            </a>
+            <a href="/" class="btn btn-pill btn-pill-outline btn-lg">
+              Voltar ao Início
+            </a>
+          </div>
+
+          <div class="cta-free-migration-pill">
+            <span>📦 <strong>Tem fichas de papel?</strong> Nossa equipe transfere seu histórico para o Pluri Fisio de graça.</span>
+          </div>
+        </div>
+
+        <div class="fisio-bottom-legal">
+          <span>© {new Date().getFullYear()} Pluri Health • Conformidade CREFITO e LGPD</span>
+        </div>
+
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  /* Apple Secondary Product Sub-Nav */
+  .product-subnav {
+    position: fixed;
+    top: 3.5rem;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    z-index: 95;
+    background-color: rgba(247, 246, 243, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border-light);
+    height: 3rem;
+  }
+
+  .product-subnav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .subnav-left {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .subnav-product-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+
+  .subnav-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--tonal-fisio-accent);
+    background-color: var(--tonal-fisio-bg);
+    border: 1px solid var(--tonal-fisio-border);
+    padding: 0.15rem 0.45rem;
+    border-radius: var(--radius-pill);
+  }
+
+  .subnav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .subnav-link {
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  .subnav-link:hover {
+    color: var(--text-primary);
+  }
+
+  /* Screen 1: Hero */
+  .fisio-hero-section {
+    background: radial-gradient(circle at 50% 15%, #ffffff 0%, var(--bg-page) 80%);
+    padding-top: 7rem;
+    justify-content: flex-start;
+  }
+
+  .fisio-hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    flex: 1;
+    justify-content: space-between;
+  }
+
+  .fisio-pill-tag {
+    font-size: 0.675rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--tonal-fisio-accent);
+    background-color: var(--tonal-fisio-bg);
+    border: 1px solid var(--tonal-fisio-border);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-pill);
+    display: inline-block;
+    margin-bottom: 0.4rem;
+  }
+
+  .fisio-hero-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    color: var(--text-primary);
+    margin-bottom: 0.4rem;
+  }
+
+  .fisio-hero-subtitle {
+    font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 1rem auto;
+    line-height: 1.4;
+  }
+
+  .fisio-hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-trust-bullets {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .fisio-img-box {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
+    margin-top: auto;
+  }
+
+  .fisio-clean-photo {
+    max-height: 38vh;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: var(--radius-xl);
+    display: block;
+  }
+
+  /* Screen 2: Pillars */
+  .fisio-pillars-section {
+    background-color: var(--bg-canvas);
+    padding-top: 7rem;
+    padding-bottom: 2rem;
+  }
+
+  .pillars-inner-container {
+    width: 100%;
+    max-width: 1040px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+  }
+
+  .pillars-header-compact {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 1.25rem auto;
+  }
+
+  .pillars-title-compact {
+    font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 0.35rem;
+  }
+
+  .pillars-desc-compact {
+    font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+    color: var(--text-secondary);
+    line-height: 1.35;
+  }
+
+  .pillars-grid-compact {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-top: auto;
+  }
+
+  .pillar-mini-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .pillar-ico {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .pillar-mini-card h4 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin-bottom: 0.4rem;
+    color: var(--text-primary);
+  }
+
+  .pillar-mini-card p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+  }
+
+  /* Screen 3: Comparison */
+  .fisio-comp-section {
+    background-color: var(--bg-page);
+    padding-top: 7rem;
+    padding-bottom: 2rem;
+  }
+
+  .comp-inner-container {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+  }
+
+  .comp-header-compact {
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .comp-title-compact {
+    font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+
+  .comp-grid-compact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: auto;
+  }
+
+  .comp-card-compact {
+    border-radius: var(--radius-xl);
+    padding: 2rem 1.75rem;
+    text-align: left;
+  }
+
+  .card-before {
+    background-color: #faf6f5;
+    border: 1px solid #f0e1dd;
+  }
+
+  .card-after {
+    background-color: #f2f8f4;
+    border: 2px solid var(--tonal-fisio-border);
+    box-shadow: var(--shadow-md);
+  }
+
+  .badge-tag-bad {
+    display: inline-block;
+    font-size: 0.675rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    background-color: #ffe4e6;
+    color: #e11d48;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-pill);
+    margin-bottom: 1.25rem;
+  }
+
+  .badge-tag-good {
+    display: inline-block;
+    font-size: 0.675rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    background-color: #d1fae5;
+    color: #059669;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-pill);
+    margin-bottom: 1.25rem;
+  }
+
+  .comp-card-compact ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+    line-height: 1.45;
+  }
+
+  .card-before ul li { color: #64748b; }
+  .card-after ul li { color: #1e293b; font-weight: 600; }
+
+  /* Screen 4: CTA */
+  .fisio-cta-section {
+    background-color: var(--bg-canvas);
+    padding-top: 7rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .cta-inner-container {
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+  }
+
+  .fisio-cta-box-compact {
+    background: linear-gradient(145deg, #ebf2ed 0%, #f4f8f5 100%);
+    border: 1px solid var(--tonal-fisio-border);
+    border-radius: var(--radius-2xl);
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+  }
+
+  .cta-title-giant {
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.03em;
+  }
+
+  .cta-subhead-text {
+    font-size: 1rem;
+    color: var(--tonal-fisio-text);
+    max-width: 540px;
+    margin: 0 auto 1.75rem auto;
+    line-height: 1.5;
+  }
+
+  .cta-btns-row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-free-migration-pill {
+    background: #ffffff;
+    border: 1px solid var(--tonal-fisio-border);
+    border-radius: var(--radius-pill);
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    font-size: 0.775rem;
+    color: var(--tonal-fisio-accent);
+  }
+
+  .fisio-bottom-legal {
+    font-size: 0.725rem;
+    color: var(--text-muted);
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-light);
+  }
+
+  @media (max-width: 900px) {
+    .pillars-grid-compact {
+      grid-template-columns: 1fr 1fr;
+    }
+    .comp-grid-compact {
+      grid-template-columns: 1fr;
+    }
+    .product-subnav {
+      display: none;
+    }
+    .fisio-hero-section,
+    .fisio-pillars-section,
+    .fisio-comp-section,
+    .fisio-cta-section {
+      padding-top: 4.5rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .fisio-hero-actions,
+    .cta-btns-row {
+      flex-direction: column;
+      width: 100%;
+    }
+    .fisio-hero-actions .btn,
+    .cta-btns-row .btn {
+      width: 100%;
+    }
+    .pillars-grid-compact {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 0.5rem;
+      gap: 1rem;
+    }
+    .pillar-mini-card {
+      flex: 0 0 75%;
+      scroll-snap-align: center;
+    }
+  }
+</style>
