@@ -1,0 +1,168 @@
+---
+// HeroSection.astro - Seção 1: Lançamento Pluri Fisio
+---
+
+<section
+  id="lancamento"
+  aria-labelledby="lancamento-titulo"
+  class="snap-page hero-aurora hero-section"
+>
+  <div aria-hidden="true" class="hero-grid"></div>
+  <div aria-hidden="true" class="hero-orbit orbit-1"></div>
+  <div aria-hidden="true" class="hero-orbit orbit-2"></div>
+  
+  <div class="hero-brand-top">
+    <img
+      src="/branding/logo/pluri_health_icon_gradient.svg"
+      alt="Pluri Health"
+      class="hero-logo-mark"
+      width="54"
+      height="54"
+      loading="eager"
+      decoding="async"
+    />
+    <span class="t-small hero-badge">
+      Lançamento oficial
+    </span>
+  </div>
+  <h1 id="lancamento-titulo" class="t-display hero-title">
+    Pluri&nbsp;Fisio.
+  </h1>
+  <p class="t-lead hero-lead">
+    A prática da fisioterapia, inteira em uma tela. Evolução, agenda e pacotes de sessões.
+  </p>
+  <div class="hero-actions">
+    <a href="#planos" class="btn-clay hero-btn">
+      Começar grátis 
+      <svg aria-hidden="true" class="icon-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </a>
+    <a href="#plataforma" class="btn-ink hero-btn">
+      Saiba mais
+    </a>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.2rem, 3.2vmin, 2.2rem);
+    padding-inline: max(1.5rem, 8vmin);
+    padding-top: 4.5rem;
+    text-align: center;
+  }
+
+  .hero-brand-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.15rem;
+  }
+
+  .hero-logo-mark {
+    width: clamp(96px, 14vmin, 140px);
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 12px 32px rgba(0, 114, 255, 0.4));
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero-logo-mark:hover {
+    transform: scale(1.06);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+    mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+    pointer-events: none;
+  }
+
+  .hero-orbit {
+    position: absolute;
+    border-radius: 9999px;
+    border: 1px solid rgba(0, 114, 255, 0.12);
+    pointer-events: none;
+    animation: orbitRotate 30s linear infinite;
+  }
+
+  .orbit-1 {
+    left: 50%;
+    top: 50%;
+    width: min(120vmin, 120vmax);
+    height: min(120vmin, 120vmax);
+    transform: translate(-50%, -50%);
+  }
+
+  .orbit-2 {
+    left: 50%;
+    top: 50%;
+    width: min(78vmin, 78vmax);
+    height: min(78vmin, 78vmax);
+    transform: translate(-50%, -50%);
+    animation-delay: -6s;
+  }
+
+  @keyframes orbitRotate {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+
+  .hero-badge {
+    font-size: clamp(0.85rem, 1.8vmin, 1.15rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    color: var(--clay);
+  }
+
+  .hero-title {
+    font-size: clamp(3.2rem, 10.5vmin, 7.8rem);
+    line-height: 1.0;
+    max-width: 16ch;
+    color: var(--foreground);
+    letter-spacing: -0.01em;
+  }
+
+  .hero-lead {
+    font-size: clamp(1.15rem, 2.7vmin, 1.65rem);
+    line-height: 1.55;
+    max-width: 44ch;
+    color: var(--muted-foreground);
+  }
+
+  .hero-actions {
+    margin-top: clamp(0.5rem, 1.5vmin, 1.25rem);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .hero-btn {
+    min-height: 3.25rem !important;
+    padding-inline: clamp(1.5rem, 3.2vmin, 2.5rem) !important;
+    font-size: clamp(0.95rem, 2vmin, 1.15rem) !important;
+    font-weight: 600 !important;
+    text-decoration: none;
+  }
+
+  .icon-arrow {
+    display: inline-block;
+    vertical-align: middle;
+  }
+</style>

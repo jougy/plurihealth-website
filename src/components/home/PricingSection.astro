@@ -1,0 +1,349 @@
+---
+// PricingSection.astro - Seção 4: Planos & Ciclos de Cobrança com cálculo reativo
+interface Cycle {
+  id: string;
+  label: string;
+  note?: string;
+}
+
+interface Plan {
+  id: string;
+  name: string;
+  tagline: string;
+  monthly: number;
+  features: string[];
+  cta: string;
+  featured: boolean;
+}
+
+const CYCLES: Cycle[] = [
+  { id: "free", label: "Degustação grátis" },
+  { id: "mensal", label: "Mensal" },
+  { id: "trimestral", label: "Trimestral", note: "-10%" },
+  { id: "anual", label: "Anual", note: "-25%" },
+];
+
+const PLANS: Plan[] = [
+  {
+    id: "solo",
+    name: "Profissional Solo",
+    tagline: "1 profissional de saúde",
+    monthly: 59,
+    features: [
+      "1 acesso simultâneo individual",
+      "Atendimentos e pacientes ilimitados",
+      "Prontuário eletrônico e anamnese",
+      "Agenda e controle financeiro",
+    ],
+    cta: "Contratar Solo",
+    featured: false,
+  },
+  {
+    id: "pro",
+    name: "Clínica Pro",
+    tagline: "Equipes e consultórios · base 4 assentos",
+    monthly: 139,
+    features: [
+      "4 acessos simultâneos inclusos",
+      "Colaboradores ilimitados (30 vagas)",
+      "Permissões avançadas (RBAC)",
+      "Agendas compartilhadas e relatórios",
+    ],
+    cta: "Contratar Clínica Pro",
+    featured: true,
+  },
+  {
+    id: "enterprise",
+    name: "Enterprise",
+    tagline: "Alta escala · base 10 assentos",
+    monthly: 299,
+    features: [
+      "10 acessos simultâneos inclusos",
+      "Até 100 profissionais cadastrados",
+      "Assentos extras por R$ 15/mês (-40%)",
+      "Múltiplas unidades e auditoria",
+    ],
+    cta: "Contratar Enterprise",
+    featured: false,
+  },
+];
+---
+
+<section
+  id="planos"
+  aria-labelledby="planos-titulo"
+  class="snap-page plans-section"
+>
+  <div class="plans-header">
+    <h2 id="planos-titulo" class="t-title">
+      Escolha seu plano.
+    </h2>
+    <div
+      role="group"
+      aria-label="Ciclo de cobrança"
+      class="cycles-switcher"
+    >
+      {CYCLES.map((c) => (
+        <button
+          type="button"
+          data-cycle={c.id}
+          class={`t-small cycle-btn ${c.id === 'mensal' ? 'active' : ''}`}
+        >
+          {c.label}
+          {c.note ? <span class="cycle-note">{c.note}</span> : null}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <ul class="plans-list">
+    {PLANS.map((p) => {
+      return (
+        <li
+          id={`card-${p.id}`}
+          class={`plan-card ${p.featured ? 'plan-featured' : 'plan-standard'}`}
+          data-monthly={p.monthly}
+        >
+          <div class="plan-card-header">
+            <div class="plan-meta">
+              <h3 class="t-lead font-semibold">{p.name}</h3>
+              <p class="t-small text-muted">{p.tagline}</p>
+            </div>
+            {p.featured ? (
+              <span class="t-small recommended-tag">
+                Recomendado
+              </span>
+            ) : null}
+          </div>
+
+          <p
+            class="t-title plan-price-main"
+            data-price-main
+            aria-label={`${p.name}: R$ ${p.monthly}/mês`}
+          >
+            R$&nbsp;{p.monthly}/mês
+          </p>
+          <p class="t-small text-muted plan-price-sub" data-price-sub>
+            Cancele quando quiser
+          </p>
+
+          <ul class="plan-features-list">
+            {p.features.map((f) => (
+              <li class="t-small feature-item">
+                <svg aria-hidden="true" class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href="https://pluri.health/planos"
+            target="_blank"
+            rel="noopener"
+            class={`t-small plan-cta-btn ${p.featured ? 'btn-clay' : 'btn-primary btn-primary-hoverable'}`}
+            data-cta-default={p.cta}
+          >
+            {p.cta}
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+
+  <p class="t-small plans-footer-note">
+    <span class="mobile-only">Deslize para ver todos os planos · </span>Pagamento no PIX com 5% de desconto · Cancele quando quiser · Pluri Health
+  </p>
+</section>
+
+<style>
+  .plans-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2vmin;
+    background-color: var(--background);
+    padding-inline: max(1rem, 4vmin);
+    padding-bottom: 2vmin;
+    padding-top: max(4.5rem, 8vmin);
+  }
+
+  .plans-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5vmin;
+    text-align: center;
+  }
+
+  .cycles-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem;
+    border-radius: 999px;
+    background-color: var(--sand);
+    padding: 0.25rem;
+  }
+
+  .cycle-btn {
+    min-height: 2.75rem;
+    border-radius: 999px;
+    padding-inline: max(0.9rem, 1.8vmin);
+    font-weight: 500;
+    color: var(--muted-foreground);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .cycle-btn:hover {
+    color: var(--foreground);
+  }
+
+  .cycle-btn.active {
+    background-color: var(--ink);
+    color: var(--bone);
+  }
+
+  .cycle-note {
+    margin-left: 0.5rem;
+    color: var(--clay);
+  }
+
+  .cycle-btn.active .cycle-note {
+    color: var(--sage);
+  }
+
+  .plans-list {
+    margin-inline: auto;
+    display: flex;
+    width: 100%;
+    max-width: 1500px;
+    min-height: 0;
+    flex: 1;
+    scroll-snap-type: x mandatory;
+    gap: 2vmin;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 0.25rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .plans-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      overflow-x: hidden;
+    }
+  }
+
+  .plan-card {
+    display: flex;
+    min-height: 0;
+    width: 86%;
+    flex-shrink: 0;
+    scroll-snap-align: center;
+    flex-direction: column;
+    gap: 1.4vmin;
+    border-radius: 1.5rem;
+    border: 1px solid var(--border);
+    padding: max(1rem, 2.4vmin);
+    background-color: var(--card);
+  }
+
+  @media (min-width: 640px) {
+    .plan-card {
+      width: 46%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .plan-card {
+      width: auto;
+      flex-shrink: 1;
+    }
+  }
+
+  .plan-featured {
+    border-color: var(--clay);
+    background-color: var(--sand);
+  }
+
+  .plan-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .text-muted {
+    color: var(--muted-foreground);
+  }
+
+  .font-semibold {
+    font-weight: 600;
+  }
+
+  .recommended-tag {
+    flex-shrink: 0;
+    border-radius: 999px;
+    background-color: var(--clay);
+    padding: 0.25rem 0.75rem;
+    font-weight: 500;
+    color: var(--bone);
+  }
+
+  .plan-price-main {
+    font-size: clamp(1.6rem, 4.2vmin, 3rem);
+    line-height: 1;
+  }
+
+  .plan-features-list {
+    margin-bottom: 0.5vmin;
+    display: flex;
+    min-height: 0;
+    flex: 1;
+    flex-direction: column;
+    gap: 1vmin;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .icon-check {
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+    color: var(--sage);
+  }
+
+  .plan-cta-btn {
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .plans-footer-note {
+    text-align: center;
+    color: var(--muted-foreground);
+  }
+
+  .mobile-only {
+    display: inline;
+  }
+
+  @media (min-width: 1024px) {
+    .mobile-only {
+      display: none;
+    }
+  }
+</style>

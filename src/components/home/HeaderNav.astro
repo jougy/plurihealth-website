@@ -1,0 +1,109 @@
+---
+// HeaderNav.astro - Navegação fixa com logo e atalhos de seção
+---
+
+<header class="lovable-header">
+  <nav aria-label="Principal" class="header-nav">
+    <a href="#lancamento" class="t-small brand-logo">
+      <img
+        src="/branding/logo/pluri_health_icon_gradient.svg"
+        alt=""
+        class="brand-icon"
+        width="26"
+        height="26"
+      />
+      <span>Pluri&nbsp;Health</span>
+    </a>
+    <ul class="nav-links">
+      <li>
+        <a href="#plataforma" class="t-small nav-link">
+          A plataforma
+        </a>
+      </li>
+      <li>
+        <a href="#como-funciona" class="t-small nav-link">
+          Como funciona
+        </a>
+      </li>
+      <li>
+        <a href="#planos" class="t-small nav-link">
+          Planos
+        </a>
+      </li>
+    </ul>
+    <a href="#planos" class="btn-clay t-small header-btn">
+      Testar grátis
+    </a>
+  </nav>
+</header>
+
+<style>
+  .lovable-header {
+    position: fixed;
+    inset-inline: 0;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    background-color: rgba(251, 250, 248, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .header-nav {
+    margin-inline: auto;
+    display: flex;
+    height: 3.5rem;
+    width: 100%;
+    max-width: 1600px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-inline: max(1rem, 3vw);
+  }
+
+  .brand-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--foreground);
+    text-decoration: none;
+  }
+
+  .brand-icon {
+    width: clamp(22px, 3.2vmin, 26px);
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 2px 8px rgba(0, 114, 255, 0.25));
+  }
+
+  .nav-links {
+    display: none;
+    align-items: center;
+    gap: max(1rem, 2vw);
+    list-style: none;
+  }
+
+  @media (min-width: 640px) {
+    .nav-links {
+      display: flex;
+    }
+  }
+
+  .nav-link {
+    color: var(--muted-foreground);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--foreground);
+  }
+
+  .header-btn {
+    min-height: 2.25rem !important;
+    padding-inline: 1.25rem !important;
+  }
+</style>
