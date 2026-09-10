@@ -136,10 +136,10 @@
     <div class="platform-view platform-view-v2" id="platformViewV2">
       <div class="v2-header-block">
         <span class="platform-kicker">Evidências científicas e de mercado</span>
-        <h2 class="t-title platform-title platform-title-conversion">
+        <h2 class="t-title v2-section-title">
           A dor da gestão e o custo do tempo em números reais.
         </h2>
-        <p class="t-lead platform-lead">
+        <p class="v2-section-lead">
           Veja por que sistemas amadores, anotações em papel e desorganização financeira ameaçam consultórios de saúde:
         </p>
       </div>
@@ -166,7 +166,7 @@
               <span class="stat-number">60%</span>
               <span class="stat-badge stat-badge-sobriety">Sustentabilidade Clínica</span>
             </div>
-            <p class="evidence-text">
+            <p class="evidence-text v2-evidence-text">
               das clínicas e consultórios de saúde no Brasil <strong>fecham suas portas em até 5 anos</strong> por deficiências no controle financeiro, fluxo de caixa e gestão de agendamentos.
             </p>
             <a href="https://saudeempreende.com.br" target="_blank" rel="noopener noreferrer" class="evidence-source-link">
@@ -196,7 +196,7 @@
               <span class="stat-number">2h</span>
               <span class="stat-badge stat-badge-time">Tempo & Sobrecarga</span>
             </div>
-            <p class="evidence-text">
+            <p class="evidence-text v2-evidence-text">
               gastas em prontuários e tarefas burocráticas <strong>para cada 1h de consulta clínica</strong>, forçando mais de 1 a 2 horas extras de trabalho não remunerado em casa à noite.
             </p>
             <a href="https://www.acpjournals.org/doi/10.7326/M16-0961" target="_blank" rel="noopener noreferrer" class="evidence-source-link">
@@ -559,22 +559,46 @@
     margin-inline: auto;
     width: 100%;
     padding-inline: max(1.5rem, 5vw);
+    padding-block: clamp(1.5rem, 3vmin, 2.5rem);
   }
 
   .platform-view-v2 {
-    gap: clamp(1rem, 2vmin, 1.5rem);
+    gap: clamp(1.2rem, 2.4vmin, 1.8rem);
   }
 
   .v2-header-block {
     text-align: left;
-    max-width: 80ch;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .v2-section-title {
+    max-width: 36ch;
+    color: var(--foreground);
+    font-size: clamp(2rem, 4.5vmin, 3.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+  }
+
+  .v2-section-lead {
+    font-family: var(--font-accessible);
+    font-weight: 400;
+    font-size: clamp(1.05rem, 1.85vmin, 1.25rem);
+    line-height: 1.6;
+    letter-spacing: 0.012em;
+    word-spacing: 0.04em;
+    color: var(--muted-foreground);
+    max-width: 68ch;
+    margin-top: 0.2rem;
   }
 
   .split-research-cards {
     display: grid;
     grid-template-columns: 1fr;
-    gap: clamp(1rem, 2.5vmin, 2rem);
-    margin-block: 0.5rem;
+    gap: clamp(1.2rem, 2.5vmin, 2rem);
+    margin-block: 0.25rem;
   }
 
   @media (min-width: 768px) {
@@ -584,7 +608,7 @@
   }
 
   .split-research-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 16px;
     overflow: hidden;
@@ -600,7 +624,7 @@
   }
 
   .split-card-media {
-    height: clamp(160px, 22vmin, 260px);
+    height: clamp(150px, 18vmin, 220px);
     overflow: hidden;
     background: var(--sand);
     position: relative;
@@ -618,7 +642,7 @@
   }
 
   .split-card-content {
-    padding: clamp(1rem, 2.4vmin, 1.6rem);
+    padding: clamp(1.2rem, 2.2vmin, 1.6rem);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -626,9 +650,23 @@
     flex: 1;
   }
 
+  .v2-evidence-text {
+    font-family: var(--font-accessible);
+    font-size: clamp(0.95rem, 1.75vmin, 1.15rem) !important;
+    line-height: 1.62 !important;
+    letter-spacing: 0.012em;
+    word-spacing: 0.03em;
+    color: var(--muted-foreground);
+  }
+
+  .v2-evidence-text strong {
+    color: var(--foreground);
+    font-weight: 600;
+  }
+
   .v2-center-actions {
     align-items: flex-start;
-    margin-top: 0.5rem;
+    margin-top: 0.35rem;
   }
 
   .conversion-actions {
@@ -834,6 +872,23 @@
     .split-card-content {
       padding: 0.65rem 0.75rem;
       gap: 0.4rem;
+    }
+
+    .v2-section-title {
+      font-size: clamp(1.4rem, 5.2vw, 1.8rem);
+      line-height: 1.15;
+      max-width: 100%;
+    }
+
+    .v2-section-lead {
+      font-size: 0.92rem;
+      line-height: 1.45;
+      max-width: 100%;
+    }
+
+    .v2-evidence-text {
+      font-size: 0.88rem !important;
+      line-height: 1.45 !important;
     }
 
     .platform-view-v3 .platform-title {
