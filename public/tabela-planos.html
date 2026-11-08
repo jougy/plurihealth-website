@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    body {
+      background-color: #0E2246;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 1440px;
+      margin: 0 auto;
+    }
+    .wrapper {
+      background: #FFFFFF;
+      border-radius: 24px;
+      padding: 36px 40px;
+      width: 100%;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 14px;
+      background: #EFF6FF;
+      color: #0072FF;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      border-radius: 999px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      border: 1px solid #BFDBFE;
+    }
+    h1 {
+      color: #0F172A;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    p.subtitle {
+      color: #64748B;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 1px solid #E2E8F0;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    thead th {
+      background: #F8FAFC;
+      padding: 16px 12px;
+      text-align: center;
+      border-bottom: 2px solid #CBD5E1;
+      border-right: 1px solid #E2E8F0;
+      vertical-align: middle;
+    }
+    thead th:last-child {
+      border-right: none;
+    }
+    thead th.feature-col {
+      width: 22%;
+      text-align: left;
+      padding-left: 18px;
+      font-size: 14px;
+      color: #475569;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .plan-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 4px;
+    }
+    .plan-pill-prof {
+      display: inline-block;
+      padding: 2px 8px;
+      background: #E0F2FE;
+      color: #0284C7;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 6px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .plan-pill-clinic {
+      display: inline-block;
+      padding: 2px 8px;
+      background: #F3E8FF;
+      color: #7E22CE;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 6px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .plan-price {
+      font-size: 17px;
+      font-weight: 800;
+      color: #0072FF;
+    }
+    tbody tr:nth-child(even) {
+      background-color: #F8FAFC;
+    }
+    tbody tr:hover {
+      background-color: #F1F5F9;
+    }
+    tbody td {
+      padding: 13px 12px;
+      border-bottom: 1px solid #E2E8F0;
+      border-right: 1px solid #E2E8F0;
+      font-size: 12.5px;
+      text-align: center;
+      color: #334155;
+      line-height: 1.4;
+      vertical-align: middle;
+    }
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+    tbody td:last-child {
+      border-right: none;
+    }
+    tbody td.feature-name {
+      text-align: left;
+      padding-left: 18px;
+      font-weight: 700;
+      color: #0F172A;
+      background-color: #FAFAFA;
+      border-right: 2px solid #E2E8F0;
+    }
+    .highlight-cell {
+      font-weight: 700;
+      color: #0284C7;
+    }
+    .tag-green {
+      display: inline-block;
+      background: #DCFCE7;
+      color: #15803D;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 11px;
+    }
+    .tag-blue {
+      display: inline-block;
+      background: #DBEAFE;
+      color: #1D4ED8;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 11px;
+    }
+    .tag-purple {
+      display: inline-block;
+      background: #F3E8FF;
+      color: #7E22CE;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 11px;
+    }
+    .footer-note {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 12px;
+      color: #64748B;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <div class="header">
+      <div class="badge">Matriz Oficial de Planos</div>
+      <h1>Tabela Comparativa de Planos — Pluri Fisio</h1>
+      <p class="subtitle">Visão dissertativa e técnica completa das funcionalidades por perfil de uso</p>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th class="feature-col">Parâmetro</th>
+          <th>
+            <span class="plan-pill-prof">Profissional</span>
+            <div class="plan-title">Básico</div>
+            <div class="plan-price">R$ 39,99/mês</div>
+          </th>
+          <th>
+            <span class="plan-pill-prof">Profissional</span>
+            <div class="plan-title">Médio</div>
+            <div class="plan-price">R$ 59,99/mês</div>
+          </th>
+          <th>
+            <span class="plan-pill-prof">Profissional</span>
+            <div class="plan-title">Top</div>
+            <div class="plan-price">R$ 89,99/mês</div>
+          </th>
+          <th>
+            <span class="plan-pill-clinic">Clínica</span>
+            <div class="plan-title">Básico</div>
+            <div class="plan-price">R$ 99,00/mês</div>
+          </th>
+          <th>
+            <span class="plan-pill-clinic">Clínica</span>
+            <div class="plan-title">Médio</div>
+            <div class="plan-price">R$ 139,00/mês</div>
+          </th>
+          <th>
+            <span class="plan-pill-clinic">Clínica</span>
+            <div class="plan-title">Top</div>
+            <div class="plan-price">R$ 199,00/mês</div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="feature-name">Acessos Simultâneos</td>
+          <td><strong>1 acesso</strong> individual</td>
+          <td><strong>1 acesso</strong> individual</td>
+          <td><span class="tag-blue">2 acessos</span><br>(Você + Apoio)</td>
+          <td><span class="tag-blue">2 acessos</span> ao mesmo tempo</td>
+          <td><span class="tag-blue">4 acessos</span> ao mesmo tempo</td>
+          <td><span class="tag-blue">8 acessos</span> ao mesmo tempo</td>
+        </tr>
+        <tr>
+          <td class="feature-name">Limite de Profissionais / Colaboradores</td>
+          <td>1 profissional titular</td>
+          <td>1 profissional titular</td>
+          <td>2 (Titular + Secretária)</td>
+          <td><span class="tag-green">Ilimitado</span><br>(Sem custo extra)</td>
+          <td><span class="tag-green">Ilimitado</span><br>(Sem custo extra)</td>
+          <td><span class="tag-green">Ilimitado</span><br>(Sem custo extra)</td>
+        </tr>
+        <tr>
+          <td class="feature-name">Pacientes e Atendimentos</td>
+          <td><span class="tag-green">Ilimitados</span></td>
+          <td><span class="tag-green">Ilimitados</span></td>
+          <td><span class="tag-green">Ilimitados</span></td>
+          <td><span class="tag-green">Ilimitados</span></td>
+          <td><span class="tag-green">Ilimitados</span></td>
+          <td><span class="tag-green">Ilimitados</span></td>
+        </tr>
+        <tr>
+          <td class="feature-name">Duplicação Rápida (em até 30s)</td>
+          <td><span class="tag-green">✓ Incluso</span></td>
+          <td><span class="tag-green">✓ Incluso</span></td>
+          <td><span class="tag-green">✓ Incluso</span></td>
+          <td><span class="tag-green">✓ Incluso</span></td>
+          <td><span class="tag-green">✓ Incluso</span></td>
+          <td><span class="tag-green">✓ Incluso</span></td>
+        </tr>
+        <tr>
+          <td class="feature-name">Formulários e Fichas de Avaliação</td>
+          <td>1 universal padrão + 1 complementar</td>
+          <td><span class="tag-purple">Ilimitados</span> e personalizáveis</td>
+          <td><span class="tag-purple">Ilimitados</span> e personalizáveis</td>
+          <td><span class="tag-purple">Ilimitados</span> compartilhados</td>
+          <td><span class="tag-purple">Ilimitados</span> compartilhados</td>
+          <td><span class="tag-purple">Ilimitados</span> compartilhados</td>
+        </tr>
+        <tr>
+          <td class="feature-name">Modelo de Permissões de Acesso</td>
+          <td>Individual autônomo</td>
+          <td>Individual autônomo</td>
+          <td>Titular + Secretária</td>
+          <td><strong>Padrão e Seguro</strong><br>(Perfis fixos recomendados)</td>
+          <td><span class="tag-blue">Permissões Editáveis</span><br>(Dono ajusta caixas)</td>
+          <td><span class="tag-purple">Controle Total</span><br>(Cria cargos + Auditoria)</td>
+        </tr>
+        <tr>
+          <td class="feature-name">Módulo Financeiro</td>
+          <td>Básico (Registro de pagamentos)</td>
+          <td>Completo (Pacotes e saldos)</td>
+          <td>Completo + Recibos automáticos</td>
+          <td>Básico da clínica</td>
+          <td>Completo + Divisão de repasses</td>
+          <td>Completo + Divisão de repasses</td>
+        </tr>
+        <tr>
+          <td class="feature-name">WhatsApp e Comunicação</td>
+          <td>Atalho de 1 toque</td>
+          <td>Atalho de 1 toque</td>
+          <td><span class="tag-green">Lembretes automáticos</span></td>
+          <td>Atalho de 1 toque</td>
+          <td>Atalho de 1 toque</td>
+          <td><span class="tag-green">Lembretes automáticos</span></td>
+        </tr>
+        <tr>
+          <td class="feature-name">Posse dos Prontuários (Multiconsultório)</td>
+          <td>Pertence ao profissional</td>
+          <td>Pertence ao profissional</td>
+          <td>Pertence ao profissional</td>
+          <td>Centralizado na clínica</td>
+          <td>Centralizado na clínica</td>
+          <td>Centralizado na clínica</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="footer-note">
+      * Todos os planos contam com prontuário eletrônico completo, segurança LGPD, 7 dias de teste gratuito e descontos nos ciclos Trimestral (-10%) e Anual (Até 33% OFF).
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,340 @@
+---
+// EcosystemSection.astro - Arquitetura de Soluções da Pluri Health
+---
+
+<section
+  id="ecossistema"
+  aria-labelledby="ecossistema-titulo"
+  class="snap-page ecosystem-section"
+>
+  <div class="ecosystem-container">
+    
+    <div class="ecosystem-header">
+      <div class="ecosystem-pill">
+        <span class="pill-dot"></span>
+        <span>VISÃO DE ECOSSISTEMA</span>
+      </div>
+      <h2 id="ecossistema-titulo" class="ecosystem-title">
+        Uma base inteligente. Especialidades dedicadas.
+      </h2>
+      <p class="ecosystem-desc">
+        A Pluri Health desenvolve plataformas com prontuário específico para a rotina de cada área de atuação clínica, compartilhando um motor de agendamentos, segurança e gestão de equipe.
+      </p>
+    </div>
+
+    <!-- Grid com as Verticais da Pluri Health -->
+    <div class="ecosystem-grid">
+      
+      <!-- Card 1: Pluri Fisio (Disponível) -->
+      <div class="vertical-card card-active">
+        <div class="card-status-badge badge-launched">
+          <span>Disponível Agora</span>
+        </div>
+        <div class="card-image-wrap">
+          <img 
+            src="/images/card_fisio.jpg" 
+            alt="Pluri Fisio - Fisioterapia" 
+            class="card-img" 
+            loading="lazy" 
+          />
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-category">Fisioterapia & Reabilitação</span>
+            <h3 class="card-title">Pluri Fisio</h3>
+          </div>
+          <p class="card-text">
+            Evolução rápida na maca, testes ortopédicos, escala de dor EVA e controle inteligente de pacotes.
+          </p>
+          <a 
+            href="https://plurifisio.com.br" 
+            target="_blank" 
+            rel="noopener" 
+            class="vertical-link active-link"
+          >
+            <span>Acessar plurifisio.com.br</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2: Pluri Psi (Em breve) -->
+      <div class="vertical-card card-upcoming">
+        <div class="card-status-badge badge-soon">
+          <span>Em Desenvolvimento</span>
+        </div>
+        <div class="card-image-wrap">
+          <img 
+            src="/images/card_psi.jpg" 
+            alt="Pluri Psi - Psicologia" 
+            class="card-img" 
+            loading="lazy" 
+          />
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-category">Psicologia & Terapia</span>
+            <h3 class="card-title">Pluri Psi</h3>
+          </div>
+          <p class="card-text">
+            Sessões protegidas com sigilo absoluto, notas de evolução contínua, recorrência e gestão de pacientes.
+          </p>
+          <div class="vertical-link disabled-link">
+            <span>Disponível em breve</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Pluri Nutri (Em breve) -->
+      <div class="vertical-card card-upcoming">
+        <div class="card-status-badge badge-soon">
+          <span>Em Desenvolvimento</span>
+        </div>
+        <div class="card-image-wrap">
+          <img 
+            src="/images/card_nutri.jpg" 
+            alt="Pluri Nutri - Nutrição" 
+            class="card-img" 
+            loading="lazy" 
+          />
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-category">Nutrição Clínica</span>
+            <h3 class="card-title">Pluri Nutri</h3>
+          </div>
+          <p class="card-text">
+            Cálculos antropométricos, planejamento alimentar e acompanhamento de adesão em linha do tempo.
+          </p>
+          <div class="vertical-link disabled-link">
+            <span>Disponível em breve</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .ecosystem-section {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    min-height: 100svh;
+    max-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FAFBFD;
+    padding: clamp(1rem, 3vh, 2.5rem) clamp(1rem, 4vw, 3rem);
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .ecosystem-container {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 2.2vh, 1.75rem);
+  }
+
+  .ecosystem-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .ecosystem-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: var(--clay);
+    background: rgba(0, 114, 255, 0.08);
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+  }
+
+  .pill-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--clay);
+  }
+
+  .ecosystem-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3.8vmin, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--foreground);
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  .ecosystem-desc {
+    font-size: clamp(0.88rem, 1.8vmin, 1.05rem);
+    color: var(--muted-foreground);
+    max-width: 64ch;
+    margin: 0 auto;
+    line-height: 1.45;
+  }
+
+  .ecosystem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+    width: 100%;
+  }
+
+  .vertical-card {
+    position: relative;
+    background: #FFFFFF;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+
+  .card-active {
+    border-color: rgba(0, 114, 255, 0.35);
+    box-shadow: 0 12px 32px rgba(0, 114, 255, 0.1);
+  }
+
+  .card-active:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(0, 114, 255, 0.16);
+  }
+
+  .card-upcoming {
+    opacity: 0.88;
+  }
+
+  .card-status-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .badge-launched {
+    background: #10B981;
+    color: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  }
+
+  .badge-soon {
+    background: rgba(15, 23, 42, 0.7);
+    color: #FFFFFF;
+    backdrop-filter: blur(8px);
+  }
+
+  .card-image-wrap {
+    width: 100%;
+    height: clamp(120px, 16vh, 165px);
+    overflow: hidden;
+    background: #E2E8F0;
+  }
+
+  .card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .card-active:hover .card-img {
+    transform: scale(1.04);
+  }
+
+  .card-body {
+    padding: clamp(0.85rem, 1.8vh, 1.25rem);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.4rem;
+    text-align: left;
+  }
+
+  .card-category {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #0066F5;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--foreground);
+    margin: 0.1rem 0;
+  }
+
+  .card-text {
+    font-size: 0.82rem;
+    color: var(--muted-foreground);
+    line-height: 1.4;
+    margin: 0;
+    flex: 1;
+  }
+
+  .vertical-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.84rem;
+    font-weight: 700;
+    padding-top: 0.4rem;
+    margin-top: auto;
+  }
+
+  .active-link {
+    color: #0066F5;
+    text-decoration: none;
+    transition: color 0.15s ease, transform 0.15s ease;
+  }
+
+  .active-link:hover {
+    color: #0044b3;
+    transform: translateX(2px);
+  }
+
+  .disabled-link {
+    color: #94A3B8;
+  }
+
+  @media (max-width: 900px) {
+    .ecosystem-grid {
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+    }
+
+    .card-image-wrap {
+      height: 110px;
+    }
+
+    .card-upcoming {
+      display: none;
+    }
+  }
+</style>

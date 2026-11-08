@@ -1,0 +1,377 @@
+---
+// FisioLaunchSection.astro - Seção de Lançamento Oficial: Pluri Fisio
+---
+
+<section
+  id="pluri-fisio"
+  aria-labelledby="pluri-fisio-titulo"
+  class="snap-page fisio-launch-section"
+>
+  <div class="fisio-launch-container">
+    
+    <!-- Top Eyebrow & Badges -->
+    <div class="fisio-top-meta">
+      <span class="launch-tag-pill">
+        <span class="pill-spark">✨</span>
+        <span>PRIMEIRA VERTICAL DA PLURI HEALTH</span>
+      </span>
+      <span class="live-pill">Disponível Agora</span>
+    </div>
+
+    <!-- Main Section Content -->
+    <div class="fisio-content-grid">
+      
+      <!-- Left Column: Copy & CTAs -->
+      <div class="fisio-text-col">
+        <h2 id="pluri-fisio-titulo" class="fisio-heading">
+          Apresentamos o <strong>Pluri Fisio</strong>.
+        </h2>
+        <p class="fisio-subheading">
+          A solução pensada exclusivamente para a rotina dinâmica de quem atende na maca. 
+          Evolução em menos de 90 segundos, atalho para WhatsApp em 1 clique e gestão descomplicada de pacotes.
+        </p>
+
+        <!-- Feature Points -->
+        <div class="fisio-highlights-list">
+          <div class="highlight-item">
+            <div class="highlight-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <div>
+              <strong>Evolução Ultraveloz na Maca</strong>
+              <p>Botão de duplicar atendimento anterior para salvar tempo entre pacientes.</p>
+            </div>
+          </div>
+
+          <div class="highlight-item">
+            <div class="highlight-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <div>
+              <strong>Controle Inteligente de Pacientes & Sessões</strong>
+              <p>Dedução de planos, histórico de absenteísmo e relatórios transparentes.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Call to Action Buttons -->
+        <div class="fisio-actions-area">
+          <a
+            href="https://plurifisio.com.br"
+            target="_blank"
+            rel="noopener"
+            class="btn-clay fisio-cta-btn"
+          >
+            <span>Acessar plurifisio.com.br</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+          <a
+            href="https://plurifisio.com.br/planos"
+            target="_blank"
+            rel="noopener"
+            class="btn-ghost fisio-secondary-btn"
+          >
+            <span>Experimentar Grátis</span>
+          </a>
+        </div>
+
+        <div class="fisio-trust-strip">
+          <span>✨ 20 atendimentos inclusos no teste</span>
+          <span class="sep">•</span>
+          <span>Sem cartão de crédito</span>
+          <span class="sep">•</span>
+          <span>Migração gratuita</span>
+        </div>
+      </div>
+
+      <!-- Right Column: Card Preview Graphic -->
+      <div class="fisio-preview-col">
+        <div class="preview-card-frame">
+          <div class="preview-glow" aria-hidden="true"></div>
+          <img
+            src="/images/card_fisio.jpg"
+            alt="Interface do Pluri Fisio com recursos ortopédicos, escala EVA e gestão de sessões"
+            class="preview-card-image"
+            width="460"
+            height="340"
+            loading="lazy"
+          />
+          <div class="preview-floating-card">
+            <div class="floating-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0072FF" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </div>
+            <div>
+              <strong>Pluri Fisio Ativo</strong>
+              <p>Edição 100% dedicada a Fisioterapia</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .fisio-launch-section {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    min-height: 100svh;
+    max-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 85% 20%, #EBF4FF 0%, #FAFBFD 55%, #F4F8FC 100%);
+    padding: clamp(1rem, 3vh, 2.5rem) clamp(1rem, 4vw, 3rem);
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .fisio-launch-container {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.75rem, 2vh, 1.5rem);
+  }
+
+  .fisio-top-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .launch-tag-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 114, 255, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 114, 255, 0.08);
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    font-size: clamp(0.7rem, 1.4vmin, 0.78rem);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #0066F5;
+  }
+
+  .live-pill {
+    font-size: 0.72rem;
+    font-weight: 800;
+    background: #10B981;
+    color: #FFFFFF;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .fisio-content-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.95fr;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    align-items: center;
+  }
+
+  .fisio-text-col {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.6rem, 1.5vh, 1.1rem);
+    text-align: left;
+  }
+
+  .fisio-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.85rem, 4.4vmin, 3.1rem);
+    font-weight: 700;
+    line-height: 1.12;
+    color: var(--foreground);
+    letter-spacing: -0.025em;
+    margin: 0;
+  }
+
+  .fisio-heading strong {
+    color: #0066F5;
+  }
+
+  .fisio-subheading {
+    font-size: clamp(0.95rem, 1.9vmin, 1.15rem);
+    line-height: 1.5;
+    color: var(--muted-foreground);
+    max-width: 48ch;
+    margin: 0;
+  }
+
+  .fisio-highlights-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-block: 0.2rem;
+  }
+
+  .highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .highlight-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #E0F2FE;
+    color: #0072FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .highlight-item strong {
+    font-size: 0.95rem;
+    color: var(--foreground);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .highlight-item p {
+    font-size: 0.84rem;
+    color: var(--muted-foreground);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .fisio-actions-area {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    margin-top: 0.4rem;
+  }
+
+  .fisio-cta-btn {
+    min-height: 3.1rem !important;
+    padding-inline: 1.75rem !important;
+    font-weight: 600 !important;
+    box-shadow: 0 8px 24px rgba(0, 114, 255, 0.25);
+    background: #0066F5 !important;
+  }
+
+  .fisio-secondary-btn {
+    min-height: 3.1rem !important;
+    padding-inline: 1.5rem !important;
+  }
+
+  .fisio-trust-strip {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.78rem;
+    color: var(--muted-foreground);
+    flex-wrap: wrap;
+    margin-top: 0.2rem;
+  }
+
+  .fisio-trust-strip .sep {
+    opacity: 0.4;
+  }
+
+  /* Preview Graphic */
+  .fisio-preview-col {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .preview-card-frame {
+    position: relative;
+    border-radius: 1.5rem;
+    padding: 0.5rem;
+    background: #FFFFFF;
+    box-shadow: 0 20px 48px rgba(0, 102, 245, 0.14);
+    border: 1px solid rgba(0, 102, 245, 0.15);
+    max-width: 480px;
+    width: 100%;
+  }
+
+  .preview-glow {
+    position: absolute;
+    inset: -15px;
+    border-radius: 2rem;
+    background: radial-gradient(circle, rgba(0, 114, 255, 0.25) 0%, transparent 70%);
+    z-index: -1;
+    filter: blur(20px);
+  }
+
+  .preview-card-image {
+    width: 100%;
+    height: auto;
+    border-radius: 1.25rem;
+    display: block;
+    object-fit: cover;
+  }
+
+  .preview-floating-card {
+    position: absolute;
+    bottom: -15px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 114, 255, 0.2);
+    border-radius: 12px;
+    padding: 0.65rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .floating-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #EBF4FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .preview-floating-card strong {
+    font-size: 0.85rem;
+    color: #0F172A;
+    display: block;
+  }
+
+  .preview-floating-card p {
+    font-size: 0.72rem;
+    color: #64748B;
+    margin: 0;
+  }
+
+  @media (max-width: 960px) {
+    .fisio-content-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .fisio-preview-col {
+      display: none;
+    }
+
+    .fisio-subheading {
+      max-width: 100%;
+    }
+  }
+</style>

@@ -3,14 +3,17 @@ import Layout from '../layouts/Layout.astro';
 import HeaderNav from '../components/home/HeaderNav.astro';
 import HeroSection from '../components/home/HeroSection.astro';
 import PlatformSection from '../components/home/PlatformSection.astro';
+import FisioLaunchSection from '../components/home/FisioLaunchSection.astro';
 import WorkflowSection from '../components/home/WorkflowSection.astro';
+import EcosystemSection from '../components/home/EcosystemSection.astro';
 import PricingSection from '../components/home/PricingSection.astro';
 import FeaturesModal from '../components/home/FeaturesModal.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <Layout 
-  title="Pluri Health — Lançamento do Pluri Fisio"
-  description="Pluri Health: prontuário, agenda e financeiro em um só lugar. Conheça o Pluri Fisio, feito para fisioterapeutas. Teste grátis por 7 dias."
+  title="Pluri Health | Healthtech de Gestão para Clínicas e Consultórios"
+  description="A Pluri Health desenvolve tecnologia intuitiva e de alta performance para gestão de clínicas e consultórios de saúde. Conheça nossos sistemas e o recém-lançado Pluri Fisio."
 >
   <a
     href="#conteudo"
@@ -24,17 +27,28 @@ import FeaturesModal from '../components/home/FeaturesModal.astro';
 
   <!-- Main Container com Snap de Página Inteira (100svh) -->
   <main id="conteudo" class="snap-main-container">
-    <!-- 1 — Lançamento Pluri Fisio -->
+    <!-- 1 — Pluri Health: Healthtech de Gestão & Lançamento Pluri Fisio -->
     <HeroSection />
 
-    <!-- 2 — O que é a Pluri Health (3 Opções de Visualização com Pesquisas Reais) -->
+    <!-- 2 — Lançamento Pluri Fisio: Primeira vertical com link direto plurifisio.com.br -->
+    <FisioLaunchSection />
+
+    <!-- 3 — Gestão de Clínicas: A Solução Inteligente Pluri Health -->
     <PlatformSection />
 
-    <!-- 3 — Como funciona (Fluxo real Pluri Health em 6 etapas) -->
+    <!-- 4 — Como funciona na Prática Clínica (Fluxo sem fricção em 6 etapas) -->
     <WorkflowSection />
 
-    <!-- 4 — Planos (Com cálculo reativo) -->
+    <!-- 5 — Ecossistema Pluri Health (Verticais Especializadas) -->
+    <EcosystemSection />
+
+    <!-- 6 — Planos para Profissionais e Clínicas -->
     <PricingSection />
+
+    <!-- 7 — Rodapé Institucional -->
+    <div class="snap-page-footer">
+      <Footer />
+    </div>
   </main>
 
   <!-- Modal de Funcionalidades Práticas da Rotina Clínica -->
@@ -42,12 +56,15 @@ import FeaturesModal from '../components/home/FeaturesModal.astro';
 </Layout>
 
 <script>
-  import { setupPricing, setupModal, setupPlatformToggle } from '../scripts/home-interactions';
+  import { setupModal, setupWorkflowResponsiveCarousel } from '../scripts/home-interactions';
+  import { setupPricing } from '../scripts/pricing-bento';
+  import { setupTrafficAttribution } from '../scripts/traffic-attribution';
 
   function init() {
+    setupTrafficAttribution();
     setupPricing();
     setupModal();
-    setupPlatformToggle();
+    setupWorkflowResponsiveCarousel();
   }
 
   if (document.readyState === "loading") {
@@ -56,3 +73,12 @@ import FeaturesModal from '../components/home/FeaturesModal.astro';
     init();
   }
 </script>
+
+<style>
+  .snap-page-footer {
+    scroll-snap-align: start;
+    width: 100%;
+    position: relative;
+    background: var(--bg-canvas, #FAFBFD);
+  }
+</style>
