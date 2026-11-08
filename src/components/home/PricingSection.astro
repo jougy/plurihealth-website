@@ -1,349 +1,553 @@
 ---
-// PricingSection.astro - Seção 4: Planos & Ciclos de Cobrança com cálculo reativo
-interface Cycle {
-  id: string;
-  label: string;
-  note?: string;
-}
+// PricingSection.astro - Seção de Planos da Pluri Health (Bento Interativo 100svh)
+import { BILLING_CYCLES, PROF_PLANS, CLINIC_PLANS, PRICES } from '../../data/pricing-plans';
 
-interface Plan {
-  id: string;
-  name: string;
-  tagline: string;
-  monthly: number;
-  features: string[];
-  cta: string;
-  featured: boolean;
-}
+const initialPlan = PROF_PLANS[1];
+const initialPrice = PRICES[initialPlan.id].mensal;
+const initialFeatures = initialPlan.features.filter((f) => !f.text.startsWith('Consultoria'));
+const initialHints = ['Iniciando', 'Alta demanda', 'Com secretária'];
 
-const CYCLES: Cycle[] = [
-  { id: "free", label: "Degustação grátis" },
-  { id: "mensal", label: "Mensal" },
-  { id: "trimestral", label: "Trimestral", note: "-10%" },
-  { id: "anual", label: "Anual", note: "-25%" },
+const audiences = [
+  { id: 'prof', label: 'Profissional', btn: 'btnAudienceProf', icon: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>' },
+  { id: 'clinic', label: 'Clínica', btn: 'btnAudienceClinic', icon: '<path d="M3 21h18"></path><path d="M9 8h1"></path><path d="M9 12h1"></path><path d="M9 16h1"></path><path d="M14 8h1"></path><path d="M14 12h1"></path><path d="M14 16h1"></path><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path>' },
+  { id: 'enterprise', label: 'Enterprise', btn: 'btnAudienceEnterprise', icon: '<rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>' },
 ];
 
-const PLANS: Plan[] = [
-  {
-    id: "solo",
-    name: "Profissional Solo",
-    tagline: "1 profissional de saúde",
-    monthly: 59,
-    features: [
-      "1 acesso simultâneo individual",
-      "Atendimentos e pacientes ilimitados",
-      "Prontuário eletrônico e anamnese",
-      "Agenda e controle financeiro",
-    ],
-    cta: "Contratar Solo",
-    featured: false,
-  },
-  {
-    id: "pro",
-    name: "Clínica Pro",
-    tagline: "Equipes e consultórios · base 4 assentos",
-    monthly: 139,
-    features: [
-      "4 acessos simultâneos inclusos",
-      "Colaboradores ilimitados (30 vagas)",
-      "Permissões avançadas (RBAC)",
-      "Agendas compartilhadas e relatórios",
-    ],
-    cta: "Contratar Clínica Pro",
-    featured: true,
-  },
-  {
-    id: "enterprise",
-    name: "Enterprise",
-    tagline: "Alta escala · base 10 assentos",
-    monthly: 299,
-    features: [
-      "10 acessos simultâneos inclusos",
-      "Até 100 profissionais cadastrados",
-      "Assentos extras por R$ 15/mês (-40%)",
-      "Múltiplas unidades e auditoria",
-    ],
-    cta: "Contratar Enterprise",
-    featured: false,
-  },
+const enterpriseItems = [
+  ['Migração Assistida VIP', 'Importação completa dos dados do seu sistema anterior.'],
+  ['Múltiplas unidades e filiais', 'Permissões avançadas por unidade, gestor e especialidade.'],
+  ['SLA dedicado e treinamento', 'Canal exclusivo direto com suporte prioritário.'],
+  ['Integrações sob medida', 'API aberta, faturamento TISS/TUSS e ERPs.'],
 ];
 ---
 
-<section
-  id="planos"
-  aria-labelledby="planos-titulo"
-  class="snap-page plans-section"
->
-  <div class="plans-header">
-    <h2 id="planos-titulo" class="t-title">
-      Escolha seu plano.
-    </h2>
-    <div
-      role="group"
-      aria-label="Ciclo de cobrança"
-      class="cycles-switcher"
-    >
-      {CYCLES.map((c) => (
-        <button
-          type="button"
-          data-cycle={c.id}
-          class={`t-small cycle-btn ${c.id === 'mensal' ? 'active' : ''}`}
-        >
-          {c.label}
-          {c.note ? <span class="cycle-note">{c.note}</span> : null}
-        </button>
-      ))}
-    </div>
+<section id="planos" aria-labelledby="planos-titulo" class="snap-page plans-section">
+  <div class="plans-ambient-bg" aria-hidden="true">
+    <div class="ambient-spot ambient-spot-1"></div>
+    <div class="ambient-spot ambient-spot-2"></div>
   </div>
 
-  <ul class="plans-list">
-    {PLANS.map((p) => {
-      return (
-        <li
-          id={`card-${p.id}`}
-          class={`plan-card ${p.featured ? 'plan-featured' : 'plan-standard'}`}
-          data-monthly={p.monthly}
-        >
-          <div class="plan-card-header">
-            <div class="plan-meta">
-              <h3 class="t-lead font-semibold">{p.name}</h3>
-              <p class="t-small text-muted">{p.tagline}</p>
+  <div class="bento" id="planosBento">
+    <!-- ================= Coluna esquerda: controles ================= -->
+    <div class="bento-controls">
+      <div class="bento-meta-badge-row">
+        <span class="bento-eyebrow"><span aria-hidden="true">⚡</span> Planos Pluri Health</span>
+        <span class="product-scope-tag">Produto Completo · Sem Barreiras</span>
+      </div>
+      
+      <h2 id="planos-titulo" class="bento-title">Tecnologia completa que cresce com a sua rotina médica e clínica.</h2>
+      <p class="bento-lead">
+        Escolha o seu perfil, a intensidade do seu consultório e o ciclo. O produto Pluri Health oferece acesso total a todas as especialidades e módulos do ecossistema.
+      </p>
+
+      <!-- Diferenciação de Produto: Pluri Health vs Pluri Fisio -->
+      <aside class="vertical-differentiator-box">
+        <div class="diff-icon" aria-hidden="true">ℹ️</div>
+        <div class="diff-content">
+          <strong>Atua exclusivamente com Fisioterapia ou Terapia Ocupacional?</strong>
+          <span>Conheça a vertical dedicada <a href="https://plurifisio.com.br" target="_blank" rel="noopener" class="fisio-direct-link">Pluri Fisio ↗</a>, customizada para rotina na maca com barreiras específicas da área.</span>
+        </div>
+      </aside>
+
+      <div class="audience-toggle-wrapper" role="tablist" aria-label="Seletor de Perfil">
+        {audiences.map((a, i) => (
+          <button
+            type="button"
+            id={a.btn}
+            class={`audience-toggle-btn ${i === 0 ? 'active' : ''}`}
+            data-audience={a.id}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={a.icon}></svg>
+            <span>{a.label}</span>
+          </button>
+        ))}
+      </div>
+
+      <div role="group" aria-label="Ciclo de cobrança" class="cycles-switcher" id="cyclesSwitcherGroup">
+        {BILLING_CYCLES.map((c) => (
+          <button type="button" data-cycle={c.id} class={`cycle-btn ${c.id === 'mensal' ? 'active' : ''}`}>
+            <span>{c.label}</span>
+            {c.note ? <span class="cycle-note">{c.note}</span> : null}
+          </button>
+        ))}
+      </div>
+
+      <!-- Slider de porte: Básico → Médio → Top -->
+      <div class="bento-stepper" id="bentoStepper">
+        <div class="bento-stepper-head">
+          <span>Porte do seu atendimento</span>
+        </div>
+        <input
+          id="bentoSlider"
+          class="bento-slider"
+          type="range"
+          min="0"
+          max="2"
+          step="1"
+          value="1"
+          aria-label="Selecionar plano por porte"
+          style="--fill: 50%;"
+        />
+        <div class="bento-steps">
+          {PROF_PLANS.map((p, i) => (
+            <button type="button" class={`bento-step ${i === 1 ? 'active' : ''}`} aria-pressed={i === 1 ? 'true' : 'false'}>
+              <span class="bento-step-name">{p.name}</span>
+              <span class="bento-step-hint">{initialHints[i]}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Banner persistente do teste grátis -->
+      <button type="button" class="trial-banner" id="btnOpenFreePlan" aria-label="Conhecer o teste gratuito de 7 dias">
+        <span class="trial-banner-badge">7 DIAS GRÁTIS</span>
+        <span class="trial-banner-text"><strong>Sem cartão de crédito:</strong> Teste a Pluri Health gratuitamente por 7 dias</span>
+        <span class="trial-banner-cta">
+          Conhecer
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </span>
+      </button>
+
+      <p class="bento-trust">
+        <span>✔ Sem fidelidade</span><span>·</span><span>Ativação imediata</span><span>·</span><span>PIX com 5% off</span>
+      </p>
+    </div>
+
+    <!-- ================= Coluna direita: palco ================= -->
+    <div class="bento-stage">
+      <!-- Plano pagos (profissional/clínica) -->
+      <article class:list={['plan-card bento-card', { 'is-featured': initialPlan.featured }]} id="bentoCard">
+        <div class="bento-card-body" id="bentoCardBody">
+          <header class="bento-card-head">
+            <div class="bento-card-id">
+              <span class="bento-badge is-popular" id="bentoBadge">{initialPlan.badge}</span>
+              <h3 class="bento-name" id="bentoName">{initialPlan.name}</h3>
+              <p class="bento-tagline" id="bentoTagline">{initialPlan.tagline}</p>
             </div>
-            {p.featured ? (
-              <span class="t-small recommended-tag">
-                Recomendado
-              </span>
-            ) : null}
+            <div class="bento-price-box">
+              <div class="bento-price" id="bentoPrice" data-price-main>{initialPrice.main}</div>
+              <div class="bento-sub" id="bentoSub" data-price-sub>{initialPrice.sub}</div>
+              <span class="bento-save" id="bentoSave" hidden></span>
+            </div>
+          </header>
+
+          <div class="launch-box">
+            <span class="launch-icon" aria-hidden="true">🎁</span>
+            <div>
+              <strong>Ecossistema Completo sem Restrições</strong>
+              <span>Consultoria VIP de implantação e prontuário adaptável inclusos</span>
+            </div>
           </div>
 
-          <p
-            class="t-title plan-price-main"
-            data-price-main
-            aria-label={`${p.name}: R$ ${p.monthly}/mês`}
-          >
-            R$&nbsp;{p.monthly}/mês
-          </p>
-          <p class="t-small text-muted plan-price-sub" data-price-sub>
-            Cancele quando quiser
-          </p>
-
-          <ul class="plan-features-list">
-            {p.features.map((f) => (
-              <li class="t-small feature-item">
-                <svg aria-hidden="true" class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                <span>{f}</span>
+          <ul class="bento-features" id="bentoFeatures" role="list">
+            {initialFeatures.map((f) => (
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>{f.bold ? <strong>{f.text}</strong> : f.text}</span>
               </li>
             ))}
           </ul>
 
+          <div class="bento-actions">
+            <a
+              id="bentoCta"
+              href={`https://app.plurihealth.com.br/cadastro?plan=${initialPlan.id}&cycle=monthly&origin=plurihealth`}
+              class="plan-cta-btn bento-cta-primary"
+              data-plan-id={initialPlan.id}
+              data-plan-name={initialPlan.name}
+              data-audience={initialPlan.audience}
+              data-cycle="mensal"
+            >
+              <span id="bentoCtaLabel">Assinar {initialPlan.name}</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a href="https://app.plurihealth.com.br/cadastro?trial=true&origin=plurihealth" class="free-card-cta bento-cta-trial">
+              Testar 7 dias grátis
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Enterprise -->
+      <article class="bento-enterprise" id="bentoEnterprise" hidden>
+        <span class="ent-badge">Grandes redes hospitalares e clínicas</span>
+        <h3 class="ent-title">Pluri Health Enterprise sob medida</h3>
+        <p class="ent-lead">Governança clínica avançada, auditoria total, integrações personalizadas e suporte 24/7 para redes com mais de 30 profissionais.</p>
+        <ul class="ent-grid" role="list">
+          {enterpriseItems.map(([t, d]) => (
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <div><strong>{t}</strong><span>{d}</span></div>
+            </li>
+          ))}
+        </ul>
+        <div class="bento-actions">
           <a
-            href="https://pluri.health/planos"
+            href="https://app.plurihealth.com.br/cadastro?plan=enterprise&cycle=annual&origin=plurihealth"
+            class="enterprise-primary-btn"
+            data-plan-id="enterprise"
+            data-plan-name="Enterprise"
+            data-audience="enterprise"
+            data-cycle="anual"
+          >Contratar Enterprise</a>
+          <a
+            href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20conversar%20sobre%20o%20Plano%20Enterprise%20da%20Pluri%20Health"
             target="_blank"
             rel="noopener"
-            class={`t-small plan-cta-btn ${p.featured ? 'btn-clay' : 'btn-primary btn-primary-hoverable'}`}
-            data-cta-default={p.cta}
-          >
-            {p.cta}
-          </a>
-        </li>
-      );
-    })}
-  </ul>
+            class="ent-secondary"
+          >Falar com consultor</a>
+        </div>
+      </article>
 
-  <p class="t-small plans-footer-note">
-    <span class="mobile-only">Deslize para ver todos os planos · </span>Pagamento no PIX com 5% de desconto · Cancele quando quiser · Pluri Health
-  </p>
+      <!-- Teste grátis -->
+      <article class="bento-trial" id="bentoTrial" hidden>
+        <div class="trial-top">
+          <span class="trial-pill">TESTE GRATUITO</span>
+          <button type="button" class="trial-back" data-close-trial>← Ver planos</button>
+        </div>
+        <h3 class="trial-title">7 dias grátis, sem cartão de crédito</h3>
+        <p class="trial-lead">Experimente a Pluri Health na prática clínica com toda a sua equipe. Sem compromisso e sem fidelidade.</p>
+        <div class="trial-specs">
+          <div><b>7 dias</b><span>de acesso total</span></div>
+          <div><b>Ilimitado</b><span>módulos liberados</span></div>
+          <div><b>R$ 0</b><span>sem cartão</span></div>
+        </div>
+        <ul class="bento-features" role="list">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>Prontuário eletrônico completo</strong> e agenda WhatsApp</span></li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>Sem bloqueio de nicho</strong> para qualquer especialidade</span></li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>Consultoria VIP</strong> de implantação sem custos</span></li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Cancele quando quiser com 1 clique</span></li>
+        </ul>
+        <div class="bento-actions">
+          <a
+            href="https://app.plurihealth.com.br/cadastro?trial=true&origin=plurihealth"
+            class="free-card-cta bento-cta-trial is-solid"
+            data-plan-name="Teste Gratuito 7 Dias"
+            data-plan-id="free_trial"
+          >Começar teste grátis</a>
+        </div>
+      </article>
+    </div>
+
+    <!-- Conteúdo textual para acessibilidade e motores de busca -->
+    <div class="sr-only">
+      <h3>Tabela de preços Pluri Health</h3>
+      <ul>
+        {[...PROF_PLANS, ...CLINIC_PLANS].map((p) => (
+          <li>
+            Plano {p.audience === 'prof' ? 'Profissional' : 'Clínica'} {p.name}: {PRICES[p.id].mensal.main} no mensal, {PRICES[p.id].trimestral.main} no trimestral e {PRICES[p.id].anual.main} no anual. {p.tagline}.
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
 </section>
 
 <style>
+  [hidden] { display: none !important; }
+
   .plans-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2vmin;
-    background-color: var(--background);
-    padding-inline: max(1rem, 4vmin);
-    padding-bottom: 2vmin;
-    padding-top: max(4.5rem, 8vmin);
-  }
-
-  .plans-header {
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 1.5vmin;
-    text-align: center;
-  }
-
-  .cycles-switcher {
-    display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 0.25rem;
-    border-radius: 999px;
-    background-color: var(--sand);
-    padding: 0.25rem;
-  }
-
-  .cycle-btn {
-    min-height: 2.75rem;
-    border-radius: 999px;
-    padding-inline: max(0.9rem, 1.8vmin);
-    font-weight: 500;
-    color: var(--muted-foreground);
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease;
-  }
-
-  .cycle-btn:hover {
-    color: var(--foreground);
-  }
-
-  .cycle-btn.active {
-    background-color: var(--ink);
-    color: var(--bone);
-  }
-
-  .cycle-note {
-    margin-left: 0.5rem;
-    color: var(--clay);
-  }
-
-  .cycle-btn.active .cycle-note {
-    color: var(--sage);
-  }
-
-  .plans-list {
-    margin-inline: auto;
-    display: flex;
-    width: 100%;
-    max-width: 1500px;
-    min-height: 0;
-    flex: 1;
-    scroll-snap-type: x mandatory;
-    gap: 2vmin;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-bottom: 0.25rem;
-    list-style: none;
-    padding: 0;
-  }
-
-  @media (min-width: 1024px) {
-    .plans-list {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      overflow-x: hidden;
-    }
-  }
-
-  .plan-card {
-    display: flex;
-    min-height: 0;
-    width: 86%;
-    flex-shrink: 0;
-    scroll-snap-align: center;
-    flex-direction: column;
-    gap: 1.4vmin;
-    border-radius: 1.5rem;
-    border: 1px solid var(--border);
-    padding: max(1rem, 2.4vmin);
-    background-color: var(--card);
-  }
-
-  @media (min-width: 640px) {
-    .plan-card {
-      width: 46%;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .plan-card {
-      width: auto;
-      flex-shrink: 1;
-    }
-  }
-
-  .plan-featured {
-    border-color: var(--clay);
-    background-color: var(--sand);
-  }
-
-  .plan-card-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 0.75rem;
-  }
-
-  .text-muted {
-    color: var(--muted-foreground);
-  }
-
-  .font-semibold {
-    font-weight: 600;
-  }
-
-  .recommended-tag {
-    flex-shrink: 0;
-    border-radius: 999px;
-    background-color: var(--clay);
-    padding: 0.25rem 0.75rem;
-    font-weight: 500;
-    color: var(--bone);
-  }
-
-  .plan-price-main {
-    font-size: clamp(1.6rem, 4.2vmin, 3rem);
-    line-height: 1;
-  }
-
-  .plan-features-list {
-    margin-bottom: 0.5vmin;
-    display: flex;
-    min-height: 0;
-    flex: 1;
-    flex-direction: column;
-    gap: 1vmin;
+    padding: clamp(0.6rem, 2vh, 1.5rem) clamp(0.9rem, 3vw, 2.5rem);
+    padding-top: clamp(3.6rem, 8vh, 5rem);
+    background-color: var(--background, #FAFBFD);
+    box-sizing: border-box;
     overflow: hidden;
-    list-style: none;
-    padding: 0;
   }
 
-  .feature-item {
+  .plans-ambient-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .ambient-spot { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.4; }
+  .ambient-spot-1 { top: -10%; left: 8%; width: 42vw; height: 42vh; background: radial-gradient(circle, rgba(0,114,255,.16), transparent 70%); }
+  .ambient-spot-2 { bottom: -12%; right: 8%; width: 38vw; height: 38vh; background: radial-gradient(circle, rgba(0,198,255,.14), transparent 70%); }
+
+  .bento {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1140px;
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: clamp(1.25rem, 3.5vw, 3rem);
+    align-items: center;
+  }
+
+  /* ---------- Coluna esquerda ---------- */
+  .bento-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(0.6rem, 1.6vh, 1rem);
+    min-width: 0;
+  }
+
+  .bento-meta-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .bento-eyebrow {
+    display: inline-flex; gap: .35rem; align-items: center;
+    background: #DBEAFE; color: #1D4ED8;
+    font-size: .74rem; font-weight: 800; padding: .25rem .7rem; border-radius: 999px;
+  }
+
+  .product-scope-tag {
+    display: inline-flex;
+    align-items: center;
+    font-size: .72rem;
+    font-weight: 700;
+    color: #0369A1;
+    background: #E0F2FE;
+    padding: .25rem .65rem;
+    border-radius: 999px;
+    border: 1px solid #BAE6FD;
+  }
+
+  .bento-title {
+    font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+    font-weight: 800; line-height: 1.15; letter-spacing: -0.03em; color: #0F172A; margin: 0;
+  }
+
+  .bento-lead { font-size: clamp(.8rem, 1.05vw, .92rem); color: #475569; line-height: 1.45; margin: 0; max-width: 34rem; }
+
+  /* Caixa comparativa de produto */
+  .vertical-differentiator-box {
     display: flex;
     align-items: flex-start;
-    gap: 0.5rem;
+    gap: 0.6rem;
+    background: #F8FAFC;
+    border: 1px dashed #CBD5E1;
+    border-radius: 12px;
+    padding: 0.55rem 0.8rem;
+    font-size: 0.76rem;
+    color: #475569;
+    line-height: 1.35;
+    max-width: 32rem;
+  }
+  .vertical-differentiator-box .diff-icon {
+    font-size: 0.95rem;
+    line-height: 1;
+    margin-top: 1px;
+  }
+  .vertical-differentiator-box strong {
+    display: block;
+    color: #1E293B;
+    font-weight: 700;
+  }
+  .fisio-direct-link {
+    color: #0072FF;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .fisio-direct-link:hover {
+    color: #0056b3;
   }
 
-  .icon-check {
-    margin-top: 0.2rem;
-    flex-shrink: 0;
-    color: var(--sage);
+  .audience-toggle-wrapper, .cycles-switcher {
+    display: inline-flex; align-items: center; gap: .15rem; padding: .2rem;
+    background: #F1F5F9; border: 1px solid #E2E8F0; border-radius: 999px; max-width: 100%;
   }
 
-  .plan-cta-btn {
-    width: 100%;
-    text-align: center;
+  .audience-toggle-btn, .cycle-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .3rem;
+    padding: .38rem .8rem; border-radius: 999px; background: transparent;
+    color: #64748B; font-size: .8rem; font-weight: 700; cursor: pointer; white-space: nowrap;
+    transition: background-color .18s ease, color .18s ease, box-shadow .18s ease;
+  }
+  .audience-toggle-btn:hover, .cycle-btn:hover { color: #0F172A; }
+  .audience-toggle-btn.active { background: #fff; color: #0072FF; box-shadow: 0 2px 6px rgba(15,23,42,.1); }
+  .cycle-btn.active { background: #0F172A; color: #fff; }
+  .cycle-note { font-size: .66rem; font-weight: 800; color: #0072FF; }
+  .cycle-btn.active .cycle-note { color: #38BDF8; }
+
+  /* Slider */
+  .bento-stepper {
+    width: 100%; max-width: 30rem;
+    background: #fff; border: 1px solid #E2E8F0; border-radius: 18px;
+    padding: clamp(.7rem, 1.6vh, 1rem) 1rem; box-shadow: 0 4px 14px rgba(15,23,42,.04);
+    display: flex; flex-direction: column; gap: .6rem;
+  }
+  .bento-stepper-head { font-size: .74rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: #64748B; }
+
+  .bento-slider {
+    -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 999px; cursor: pointer;
+    background: linear-gradient(90deg, #0072FF var(--fill, 50%), #E2E8F0 var(--fill, 50%));
+    outline-offset: 4px;
+  }
+  .bento-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%;
+    background: #fff; border: 3px solid #0072FF; box-shadow: 0 2px 8px rgba(0,114,255,.35);
+    transition: transform .15s ease;
+  }
+  .bento-slider::-webkit-slider-thumb:hover { transform: scale(1.12); }
+  .bento-slider::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 3px solid #0072FF; }
+
+  .bento-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: .25rem; }
+  .bento-step {
+    display: flex; flex-direction: column; gap: .1rem; padding: .3rem .25rem; border-radius: 10px;
+    background: transparent; text-align: center; color: #64748B; transition: background-color .18s ease, color .18s ease;
+  }
+  .bento-step:nth-child(1) { text-align: left; }
+  .bento-step:nth-child(3) { text-align: right; }
+  .bento-step-name { font-size: .88rem; font-weight: 800; }
+  .bento-step-hint { font-size: .7rem; font-weight: 600; opacity: .85; }
+  .bento-step.active { color: #0072FF; }
+
+  /* Banner teste grátis */
+  .trial-banner {
+    display: inline-flex; align-items: center; gap: .55rem; max-width: 100%;
+    background: linear-gradient(90deg, #F0FDF4, #ECFDF5); border: 1px solid #86EFAC; color: #166534;
+    border-radius: 16px; padding: .5rem .8rem; font-size: .8rem; text-align: left; cursor: pointer;
+    box-shadow: 0 2px 8px rgba(34,197,94,.12);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .trial-banner:hover { transform: translateY(-1px); border-color: #4ADE80; box-shadow: 0 6px 16px rgba(34,197,94,.2); }
+  .trial-banner-badge { background: #16A34A; color: #fff; font-size: .64rem; font-weight: 800; padding: .15rem .5rem; border-radius: 999px; white-space: nowrap; letter-spacing: .04em; }
+  .trial-banner-text { line-height: 1.3; }
+  .trial-banner-text strong { color: #14532D; }
+  .trial-banner-cta { display: inline-flex; align-items: center; gap: .15rem; font-weight: 800; color: #15803D; white-space: nowrap; }
+
+  .bento-trust { display: flex; flex-wrap: wrap; gap: .4rem; font-size: .74rem; color: #64748B; margin: 0; }
+
+  /* ---------- Palco direito ---------- */
+  .bento-stage { min-width: 0; }
+
+  .bento-card, .bento-enterprise, .bento-trial {
+    border-radius: 26px; padding: clamp(1rem, 2.6vh, 1.9rem) clamp(1.1rem, 2.4vw, 2rem);
+    box-shadow: 0 18px 44px -14px rgba(15,23,42,.18); box-sizing: border-box;
+  }
+
+  .bento-card { position: relative; background: #fff; border: 2px solid #E2E8F0; transition: border-color .25s ease, box-shadow .25s ease; }
+  .bento-card.is-featured { border-color: #0072FF; box-shadow: 0 20px 48px -12px rgba(0,114,255,.28); }
+
+  .bento-card-body, .bento-enterprise, .bento-trial { display: flex; flex-direction: column; gap: clamp(.65rem, 1.8vh, 1.15rem); }
+  .swap { animation: bentoSwap .28s cubic-bezier(.16,1,.3,1); }
+  @keyframes bentoSwap { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  .bento-card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+  .bento-card-id { min-width: 0; }
+  .bento-badge { display: inline-block; background: #F1F5F9; color: #475569; font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; padding: .22rem .65rem; border-radius: 999px; }
+  .bento-badge.is-popular { background: linear-gradient(135deg, #0072FF, #00C6FF); color: #fff; }
+  .bento-name { font-size: clamp(1.4rem, 2.4vw, 1.9rem); font-weight: 900; color: #0F172A; margin: .4rem 0 .1rem; letter-spacing: -.02em; line-height: 1.1; }
+  .bento-tagline { font-size: .84rem; color: #64748B; margin: 0; line-height: 1.35; }
+
+  .bento-price-box { text-align: right; flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: .2rem; }
+  .bento-price { font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 900; color: #0F172A; letter-spacing: -.03em; line-height: 1; white-space: nowrap; }
+  .bento-sub { font-size: .74rem; color: #64748B; font-weight: 600; }
+  .bento-save { background: #DCFCE7; color: #15803D; font-size: .7rem; font-weight: 800; padding: .15rem .55rem; border-radius: 999px; }
+
+  /* Bônus de lançamento em destaque */
+  .launch-box {
+    display: flex; align-items: center; gap: .7rem;
+    background: linear-gradient(90deg, #F0FDF4, #ECFDF5); border: 1px solid #86EFAC; border-radius: 16px;
+    padding: .65rem .9rem; color: #166534;
+  }
+  .launch-icon { font-size: 1.35rem; line-height: 1; }
+  .launch-box div { display: flex; flex-direction: column; font-size: .78rem; line-height: 1.3; }
+  .launch-box strong { font-size: .86rem; color: #14532D; }
+
+  .bento-features { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: .55rem 1.1rem; }
+  .bento-features :global(li) { display: flex; gap: .45rem; align-items: flex-start; font-size: .82rem; color: #334155; line-height: 1.35; }
+  .bento-features :global(svg) { color: #10B981; flex-shrink: 0; margin-top: 2px; }
+  .bento-features :global(strong) { color: #0F172A; font-weight: 700; }
+
+  .bento-actions { display: flex; gap: .65rem; flex-wrap: wrap; }
+  .bento-cta-primary, .bento-cta-trial, .enterprise-primary-btn, .ent-secondary {
+    display: inline-flex; align-items: center; justify-content: center; gap: .45rem;
+    padding: .8rem 1.2rem; border-radius: 14px; font-size: .9rem; font-weight: 800; text-align: center;
     text-decoration: none;
+    transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+  }
+  .bento-cta-primary { flex: 1 1 11rem; background: linear-gradient(135deg, #0072FF, #00C6FF); color: #fff; box-shadow: 0 8px 20px rgba(0,114,255,.3); }
+  .bento-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(0,114,255,.42); }
+  .bento-cta-trial { flex: 1 1 9rem; background: #F0FDF4; color: #15803D; border: 1px solid #86EFAC; }
+  .bento-cta-trial:hover { background: #DCFCE7; transform: translateY(-2px); }
+  .bento-cta-trial.is-solid { background: #16A34A; color: #fff; border-color: #16A34A; box-shadow: 0 8px 20px rgba(22,163,74,.3); }
+  .bento-cta-trial.is-solid:hover { background: #15803D; }
+
+  /* Enterprise */
+  .bento-enterprise { background: linear-gradient(135deg, #0F172A, #1E293B); color: #fff; }
+  .ent-badge { align-self: flex-start; background: rgba(0,198,255,.14); border: 1px solid rgba(0,198,255,.3); color: #38BDF8; font-size: .7rem; font-weight: 800; padding: .22rem .7rem; border-radius: 999px; }
+  .ent-title { font-size: clamp(1.4rem, 2.4vw, 1.9rem); font-weight: 900; margin: 0; line-height: 1.15; }
+  .ent-lead { font-size: .88rem; color: #94A3B8; line-height: 1.45; margin: 0; }
+  .ent-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: .8rem 1.1rem; }
+  .ent-grid li { display: flex; gap: .55rem; align-items: flex-start; }
+  .ent-grid svg { flex-shrink: 0; margin-top: 2px; }
+  .ent-grid div { display: flex; flex-direction: column; }
+  .ent-grid strong { font-size: .86rem; }
+  .ent-grid span { font-size: .75rem; color: #94A3B8; line-height: 1.35; }
+  .enterprise-primary-btn { flex: 1 1 11rem; background: linear-gradient(135deg, #0072FF, #00C6FF); color: #fff; box-shadow: 0 8px 20px rgba(0,114,255,.3); }
+  .ent-secondary { flex: 1 1 9rem; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.22); color: #F8FAFC; }
+  .ent-secondary:hover { background: rgba(255,255,255,.16); }
+
+  /* Teste grátis */
+  .bento-trial { background: linear-gradient(135deg, #F0FDF4, #fff); border: 2px solid #22C55E; box-shadow: 0 18px 44px -14px rgba(34,197,94,.3); }
+  .trial-top { display: flex; justify-content: space-between; align-items: center; }
+  .trial-pill { background: #16A34A; color: #fff; font-size: .68rem; font-weight: 800; padding: .22rem .75rem; border-radius: 999px; letter-spacing: .05em; }
+  .trial-back { background: #DCFCE7; border: 1px solid #86EFAC; color: #15803D; font-size: .76rem; font-weight: 700; padding: .28rem .7rem; border-radius: 999px; cursor: pointer; }
+  .trial-back:hover { background: #BBF7D0; }
+  .trial-title { font-size: clamp(1.4rem, 2.4vw, 1.9rem); font-weight: 900; color: #0F172A; margin: 0; line-height: 1.15; }
+  .trial-lead { font-size: .88rem; color: #475569; line-height: 1.45; margin: 0; }
+  .trial-specs { display: grid; grid-template-columns: repeat(3, 1fr); background: #fff; border: 1px solid #DCFCE7; border-radius: 16px; padding: .6rem; text-align: center; }
+  .trial-specs div { display: flex; flex-direction: column; }
+  .trial-specs div + div { border-left: 1px solid #E2E8F0; }
+  .trial-specs b { font-size: 1.3rem; color: #16A34A; font-weight: 900; }
+  .trial-specs span { font-size: .7rem; color: #64748B; font-weight: 600; }
+
+  /* ---------- Mobile / tablet ---------- */
+  @media (max-width: 860px) {
+    .plans-section { padding: 3.4rem .85rem .6rem; align-items: flex-start; overflow-y: auto; }
+    .bento { grid-template-columns: minmax(0, 1fr); gap: .75rem; align-items: start; }
+    .bento-controls { gap: .5rem; align-items: stretch; }
+    .bento-eyebrow, .bento-lead, .bento-trust { display: none; }
+    .bento-title { font-size: 1.3rem; text-align: center; }
+    .vertical-differentiator-box { align-self: stretch; max-width: none; font-size: 0.72rem; }
+    .audience-toggle-wrapper, .cycles-switcher { align-self: center; }
+    .audience-toggle-btn, .cycle-btn { padding: .32rem .6rem; font-size: .74rem; }
+    .bento-stepper { max-width: none; padding: .55rem .8rem; gap: .45rem; }
+    .bento-stepper-head { display: none; }
+    .bento-step-name { font-size: .82rem; }
+    .bento-step-hint { font-size: .66rem; }
+    .trial-banner { order: 5; font-size: .72rem; padding: .4rem .6rem; gap: .4rem; width: 100%; justify-content: space-between; }
+    .bento-controls > .trial-banner { margin-top: .1rem; }
+
+    .bento-card, .bento-enterprise, .bento-trial { border-radius: 20px; padding: .85rem .95rem; }
+    .bento-card-body, .bento-enterprise, .bento-trial { gap: .6rem; }
+    .bento-name { font-size: 1.3rem; margin-top: .3rem; }
+    .bento-tagline { font-size: .76rem; }
+    .bento-price { font-size: 1.5rem; }
+    .bento-sub { font-size: .68rem; }
+    .launch-box { padding: .5rem .7rem; }
+    .launch-box div { font-size: .7rem; }
+    .launch-box strong { font-size: .78rem; }
+    .bento-features { grid-template-columns: 1fr; gap: .35rem; }
+    .bento-features :global(li) { font-size: .76rem; }
+    .bento-cta-primary, .bento-cta-trial, .enterprise-primary-btn, .ent-secondary { padding: .65rem .9rem; font-size: .84rem; }
+    .ent-grid { grid-template-columns: 1fr; gap: .5rem; }
   }
 
-  .plans-footer-note {
-    text-align: center;
-    color: var(--muted-foreground);
+  @media (max-width: 860px) and (max-height: 720px) {
+    .bento-step-hint, .bento-tagline { display: none; }
+    .bento-features { gap: .25rem; }
   }
 
-  .mobile-only {
-    display: inline;
+  @media (min-width: 861px) and (max-height: 760px) {
+    .bento-lead, .bento-trust { display: none; }
+    .bento-title { font-size: 1.7rem; }
   }
 
-  @media (min-width: 1024px) {
-    .mobile-only {
-      display: none;
-    }
+  @media (prefers-reduced-motion: reduce) {
+    .swap { animation: none; }
   }
 </style>

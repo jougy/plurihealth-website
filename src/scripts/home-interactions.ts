@@ -1,4 +1,4 @@
-// home-interactions.ts - Scripts com complexidade O(1) para alternador de plataforma, preços e modal
+// home-interactions.ts - Scripts essenciais para preços e modal de funcionalidades
 
 // Cache formatador de BRL
 const brlFormatter = new Intl.NumberFormat("pt-BR", {
@@ -10,34 +10,70 @@ const brlFormatter = new Intl.NumberFormat("pt-BR", {
 export function setupPricing() {
   const cycleButtons = document.querySelectorAll<HTMLButtonElement>(".cycle-btn");
   const cards = document.querySelectorAll<HTMLElement>(".plan-card");
+  const btnProf = document.getElementById("btnAudienceProf") as HTMLButtonElement | null;
+  const btnClinic = document.getElementById("btnAudienceClinic") as HTMLButtonElement | null;
+  const groupProf = document.getElementById("plansGroupProf");
+  const groupClinic = document.getElementById("plansGroupClinic");
+
+  // Seletor de Perfil (Profissional x Clínica)
+  if (btnProf && btnClinic && groupProf && groupClinic) {
+    btnProf.addEventListener("click", () => {
+      btnProf.classList.add("active");
+      btnProf.setAttribute("aria-selected", "true");
+      btnClinic.classList.remove("active");
+      btnClinic.setAttribute("aria-selected", "false");
+      groupProf.style.display = "";
+      groupClinic.style.display = "none";
+    });
+
+    btnClinic.addEventListener("click", () => {
+      btnClinic.classList.add("active");
+      btnClinic.setAttribute("aria-selected", "true");
+      btnProf.classList.remove("active");
+      btnProf.setAttribute("aria-selected", "false");
+      groupClinic.style.display = "";
+      groupProf.style.display = "none";
+    });
+  }
+
   if (!cycleButtons.length || !cards.length) return;
 
-  // Pré-computar valores em O(1) lookup
+  const formatBRL = (val: number) =>
+    Number.isInteger(val) ? `R$ ${val}` : `R$ ${val.toFixed(2).replace(".", ",")}`;
+
+  // Pré-computar valores em O(1) lookup para todos os cards
   const cardData = Array.from(cards).map(card => {
-    const monthly = parseFloat(card.getAttribute("data-monthly") || "0");
+    const cardId = card.id;
+    const monthlyVal = parseFloat(card.getAttribute("data-monthly") || "0");
     const mainEl = card.querySelector<HTMLElement>("[data-price-main]");
     const subEl = card.querySelector<HTMLElement>("[data-price-sub]");
-    const ctaBtn = card.querySelector<HTMLElement>(".plan-cta-btn");
-    const defaultCta = ctaBtn?.getAttribute("data-cta-default") || "Contratar";
+    const ctaBtn = card.querySelector<HTMLAnchorElement>(".plan-cta-btn");
+    const defaultCta = ctaBtn?.getAttribute("data-cta-default") || "Escolher Plano";
+
+    const quarterlyVal = monthlyVal * 0.9;
+    const annualVal = monthlyVal * 0.75;
 
     return {
-      monthly,
+      cardId,
       mainEl,
       subEl,
       ctaBtn,
       defaultCta,
       priceCache: {
-        free: { main: "Grátis", sub: "7 dias ou até 20 atendimentos" },
-        mensal: { main: `${brlFormatter.format(monthly)}/mês`, sub: "Cancele quando quiser" },
+        free: {
+          main: "Grátis",
+          sub: "7 dias ou até 20 atendimentos",
+        },
+        mensal: { main: `${formatBRL(monthlyVal)}/mês`, sub: "Cancele quando quiser" },
         trimestral: {
-          main: `${brlFormatter.format(monthly * 0.9)}/mês`,
-          sub: `Total ${brlFormatter.format(monthly * 0.9 * 3)} por trimestre`,
+          main: `${formatBRL(quarterlyVal)}/mês`,
+          sub: `Total ${formatBRL(quarterlyVal * 3)} por trimestre`,
         },
         anual: {
-          main: `${brlFormatter.format(monthly * 0.75)}/mês`,
-          sub: `Total ${brlFormatter.format(monthly * 0.75 * 12)} por ano`,
+          main: `${formatBRL(annualVal)}/mês`,
+          sub: `Total ${formatBRL(annualVal * 12)} por ano`,
         },
-      } as Record<string, { main: string; sub: string }>
+      } as Record<string, { main: string; sub: string }>,
     };
   });
 
@@ -52,7 +88,13 @@ export function setupPricing() {
       if (data.mainEl) data.mainEl.textContent = price.main;
       if (data.subEl) data.subEl.textContent = price.sub;
       if (data.ctaBtn) {
-        data.ctaBtn.textContent = cycleId === "free" ? "Ativar degustação" : data.defaultCta;
+        if (cycleId === "free") {
+          data.ctaBtn.textContent = "Testar 7 dias grátis";
+          data.ctaBtn.href = "https://plurifisio.com.br/planos?cycle=free";
+        } else {
+          data.ctaBtn.textContent = data.defaultCta;
+          data.ctaBtn.href = "https://plurifisio.com.br/planos";
+        }
       }
     }
   }
@@ -70,10 +112,32 @@ export function setupModal() {
   const openBtn = document.getElementById("btnOpenFeaturesModal");
   const closeBtn = document.getElementById("btnCloseFeaturesModal");
   const ctaBtn = document.getElementById("modalCtaPlanos");
+  const featureTriggers = document.querySelectorAll<HTMLElement>("[data-open-feature]");
+  const tabButtons = document.querySelectorAll<HTMLButtonElement>(".modal-tab-btn");
+  const tabContents = document.querySelectorAll<HTMLElement>(".modal-tab-content");
 
-  if (!overlay || !openBtn) return;
+  if (!overlay) return;
 
-  function open() {
+  function switchTab(tabId: string) {
+    tabButtons.forEach(btn => {
+      btn.classList.toggle("active", btn.getAttribute("data-tab-target") === tabId);
+    });
+    tabContents.forEach(content => {
+      content.classList.toggle("active", content.id === tabId);
+    });
+  }
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const target = btn.getAttribute("data-tab-target");
+      if (target) switchTab(target);
+    });
+  });
+
+  function open(preferredTab?: string) {
+    if (preferredTab) {
+      switchTab(preferredTab);
+    }
     overlay?.classList.add("is-active");
     document.body.style.overflow = "hidden";
   }
@@ -83,9 +147,22 @@ export function setupModal() {
     document.body.style.overflow = "";
   }
 
-  openBtn.addEventListener("click", open);
+  openBtn?.addEventListener("click", () => open("tab-diferenciais"));
   closeBtn?.addEventListener("click", close);
   ctaBtn?.addEventListener("click", close);
+
+  featureTriggers.forEach(trigger => {
+    trigger.addEventListener("click", () => {
+      const featureKey = trigger.getAttribute("data-open-feature");
+      if (featureKey === "autonomia" || featureKey === "seguranca") {
+        open("tab-seguranca");
+      } else if (featureKey === "duplicacao" || featureKey === "editor") {
+        open("tab-diferenciais");
+      } else {
+        open("tab-rotina");
+      }
+    });
+  });
 
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay) close();
@@ -98,82 +175,84 @@ export function setupModal() {
   });
 }
 
-export function setupPlatformToggle() {
-  const btnPrev = document.getElementById("btnPrevPlatformMode");
-  const btnNext = document.getElementById("btnNextPlatformMode");
-  const modeCounter = document.getElementById("platformModeCounter");
-  const modeLabel = document.getElementById("platformModeLabel");
-  const sectionEl = document.getElementById("plataforma");
+export function setupWorkflowResponsiveCarousel() {
+  const section = document.getElementById("como-funciona");
+  const viewport = document.getElementById("workflowCarouselViewport");
+  const track = document.getElementById("workflowCardsTrack");
+  const btnPrev = document.getElementById("btnWorkflowPrev");
+  const btnNext = document.getElementById("btnWorkflowNext");
+  const dots = document.querySelectorAll<HTMLButtonElement>("#workflowDotsList .carousel-dot");
 
-  const v1 = document.getElementById("platformViewV1");
-  const v2 = document.getElementById("platformViewV2");
-  const v3 = document.getElementById("platformViewV3");
+  if (!section || !viewport || !track) return;
 
-  const imgV1 = document.getElementById("platformImgV1");
-  const imgV3 = document.getElementById("platformImgV3");
+  const slides = track.querySelectorAll<HTMLElement>(".workflow-carousel-slide");
+  if (!slides.length) return;
 
-  if (!btnPrev || !btnNext || !v1 || !v2 || !v3) return;
+  function updateLayout() {
+    const isMobile = window.innerWidth <= 768;
+    const windowHeight = window.innerHeight;
+    const isShortHeight = windowHeight < 680 && window.innerWidth < 1100;
 
-  const versions = [
-    { id: 1, title: "Opção 1: Pesquisas + Foto Vertical", view: v1, showImgV1: true },
-    { id: 2, title: "Opção 2: Imagem Dedicada por Pesquisa", view: v2, showImgV1: false },
-    { id: 3, title: "Opção 3: Minimalista Original", view: v3, showImgV1: false },
-  ];
-
-  let currentIndex = 0;
-
-  function applyVersion(index: number) {
-    currentIndex = (index + versions.length) % versions.length;
-    const current = versions[currentIndex];
-
-    if (modeCounter) modeCounter.textContent = `${current.id}/3`;
-    if (modeLabel) modeLabel.textContent = current.title;
-
-    for (let i = 0; i < versions.length; i++) {
-      versions[i].view.classList.toggle("active", i === currentIndex);
+    if (isMobile || isShortHeight) {
+      viewport?.classList.add("is-carousel");
+    } else {
+      viewport?.classList.remove("is-carousel");
     }
 
-    if (sectionEl) {
-      sectionEl.classList.toggle("mode-v2-active", current.id === 2);
-    }
-
-    if (imgV1 && imgV3) {
-      imgV1.classList.toggle("active", current.showImgV1);
-      imgV3.classList.toggle("active", !current.showImgV1);
-    }
+    updateArrowsAndDots();
   }
 
-  btnNext.addEventListener("click", () => applyVersion(currentIndex + 1));
-  btnPrev.addEventListener("click", () => applyVersion(currentIndex - 1));
+  function updateArrowsAndDots() {
+    if (!viewport?.classList.contains("is-carousel")) return;
 
-  // Suporte a gestos touch swipe lateral em O(1)
-  if (sectionEl) {
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let touchStartTime = 0;
+    const scrollLeft = track.scrollLeft;
+    const maxScroll = track.scrollWidth - track.clientWidth;
 
-    sectionEl.addEventListener("touchstart", (e) => {
-      if (e.touches.length === 1) {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-        touchStartTime = Date.now();
-      }
-    }, { passive: true });
+    if (btnPrev) {
+      (btnPrev as HTMLButtonElement).style.opacity = scrollLeft > 10 ? "1" : "0.3";
+      (btnPrev as HTMLButtonElement).style.pointerEvents = scrollLeft > 10 ? "auto" : "none";
+    }
 
-    sectionEl.addEventListener("touchend", (e) => {
-      if (e.changedTouches.length === 1) {
-        const deltaX = e.changedTouches[0].clientX - touchStartX;
-        const deltaY = e.changedTouches[0].clientY - touchStartY;
-        const elapsedTime = Date.now() - touchStartTime;
+    if (btnNext) {
+      (btnNext as HTMLButtonElement).style.opacity = scrollLeft < maxScroll - 10 ? "1" : "0.3";
+      (btnNext as HTMLButtonElement).style.pointerEvents = scrollLeft < maxScroll - 10 ? "auto" : "none";
+    }
 
-        if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2 && elapsedTime < 800) {
-          if (deltaX < 0) {
-            applyVersion(currentIndex + 1);
-          } else {
-            applyVersion(currentIndex - 1);
-          }
-        }
-      }
-    }, { passive: true });
+    // Identificar slide atual visível baseado na largura de cada slide
+    const slideWidth = slides[0]?.offsetWidth || track.clientWidth || 1;
+    const currentIndex = Math.min(
+      Math.max(0, Math.round(scrollLeft / slideWidth)),
+      slides.length - 1
+    );
+
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle("active", idx === currentIndex);
+    });
   }
+
+  btnNext?.addEventListener("click", () => {
+    const slideWidth = slides[0]?.offsetWidth || track.clientWidth || 320;
+    track.scrollBy({ left: slideWidth + 12, behavior: "smooth" });
+  });
+
+  btnPrev?.addEventListener("click", () => {
+    const slideWidth = slides[0]?.offsetWidth || track.clientWidth || 320;
+    track.scrollBy({ left: -(slideWidth + 12), behavior: "smooth" });
+  });
+
+  dots.forEach((dot, idx) => {
+    dot.addEventListener("click", () => {
+      const slide = slides[idx];
+      if (slide) {
+        track.scrollTo({ left: slide.offsetLeft - track.offsetLeft, behavior: "smooth" });
+      }
+    });
+  });
+
+  track.addEventListener("scroll", updateArrowsAndDots, { passive: true });
+  window.addEventListener("resize", updateLayout, { passive: true });
+
+  // Rodar de imediato
+  updateLayout();
 }
+

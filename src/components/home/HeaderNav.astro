@@ -4,36 +4,48 @@
 
 <header class="lovable-header">
   <nav aria-label="Principal" class="header-nav">
-    <a href="#lancamento" class="t-small brand-logo">
+    <a href="#institucional" class="t-small brand-logo">
       <img
         src="/branding/logo/pluri_health_icon_gradient.svg"
-        alt=""
+        alt="Pluri Health"
         class="brand-icon"
-        width="26"
-        height="26"
+        width="28"
+        height="28"
       />
-      <span>Pluri&nbsp;Health</span>
+      <span>Pluri&nbsp;<strong>Health</strong></span>
     </a>
     <ul class="nav-links">
       <li>
-        <a href="#plataforma" class="t-small nav-link">
-          A plataforma
+        <a href="#gestao-clinica" class="t-small nav-link">
+          Gestão de Clínicas
         </a>
       </li>
       <li>
-        <a href="#como-funciona" class="t-small nav-link">
-          Como funciona
+        <a href="#pluri-fisio" class="t-small nav-link nav-highlight">
+          Lançamento Pluri Fisio
         </a>
       </li>
       <li>
-        <a href="#planos" class="t-small nav-link">
-          Planos
+        <a href="#ecossistema" class="t-small nav-link">
+          Ecossistema
         </a>
       </li>
     </ul>
-    <a href="#planos" class="btn-clay t-small header-btn">
-      Testar grátis
-    </a>
+    <div class="header-actions-group">
+      <a 
+        href="https://plurifisio.com.br" 
+        target="_blank" 
+        rel="noopener" 
+        class="btn-clay t-small header-btn header-btn-fisio"
+        title="Acessar o sistema Pluri Fisio em plurifisio.com.br"
+      >
+        <span>Acessar Pluri Fisio</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="7" y1="17" x2="17" y2="7"></line>
+          <polyline points="7 7 17 7 17 17"></polyline>
+        </svg>
+      </a>
+    </div>
   </nav>
 </header>
 
@@ -102,8 +114,27 @@
     color: var(--foreground);
   }
 
+  .nav-highlight {
+    color: var(--clay);
+    font-weight: 600;
+  }
+
+  .header-actions-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
   .header-btn {
     min-height: 2.25rem !important;
     padding-inline: 1.25rem !important;
+  }
+
+  .header-btn-fisio {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(0, 114, 255, 0.2);
   }
 </style>

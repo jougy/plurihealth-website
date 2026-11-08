@@ -1,352 +1,563 @@
 ---
-// WorkflowSection.astro - Seção 3: Como Funciona (6 Etapas com Tipografia Acessível)
+// WorkflowSection.astro - Seção 3: Seis etapas. Nenhuma fricção (Design Navy Profundo & Responsividade Dinâmica com Carrossel)
 ---
 
 <section
   id="como-funciona"
   aria-labelledby="como-titulo"
-  class="snap-page how-section"
+  class="snap-page workflow-navy-section"
+  style="background-color: #0E2246 !important; color: #FFFFFF !important;"
 >
-  <div class="how-header-row">
-    <h2 id="como-titulo" class="t-title how-title">
-      Seis etapas. Nenhuma fricção.
-    </h2>
-    <button type="button" class="btn-features-trigger" id="btnOpenFeaturesModal">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-      </svg>
-      <span>Conheça as principais funcionalidades</span>
-    </button>
+  <div class="workflow-navy-container">
+    <!-- Header com Título e Botão Lateral de Funcionalidades -->
+    <div class="workflow-navy-header">
+      <h2 id="como-titulo" class="workflow-navy-title">
+        Seis etapas. Nenhuma<br />fricção.
+      </h2>
+
+      <button type="button" class="btn-navy-features-trigger" id="btnOpenFeaturesModal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+        </svg>
+        <span>Conheça as principais funcionalidades</span>
+      </button>
+    </div>
+
+    <!-- Wrapper do Carrossel Dinâmico / Grid -->
+    <div class="workflow-carousel-viewport" id="workflowCarouselViewport">
+      <!-- Botão Voltar -->
+      <button
+        type="button"
+        id="btnWorkflowPrev"
+        class="workflow-carousel-arrow arrow-prev"
+        aria-label="Voltar etapas anteriores"
+        title="Voltar"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <!-- Trilho de Cards Organizados por Slides Dinâmicos -->
+      <div class="workflow-cards-track" id="workflowCardsTrack">
+        
+        <!-- Slide 1 (Cards 01 a 03) -->
+        <div class="workflow-carousel-slide" data-slide-index="0">
+          <!-- Passo 1: Auto-cadastro -->
+          <div class="workflow-navy-card">
+            <div class="card-top-row">
+              <div class="card-icon-container">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+              </div>
+              <span class="card-step-num">01</span>
+            </div>
+            <h3 class="card-title">Auto-cadastro</h3>
+            <p class="card-text">
+              O paciente preenche a ficha no celular antes de chegar, poupando tempo na maca.
+            </p>
+          </div>
+
+          <!-- Passo 2: Agenda Ágil -->
+          <div class="workflow-navy-card">
+            <div class="card-top-row">
+              <div class="card-icon-container">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              </div>
+              <span class="card-step-num">02</span>
+            </div>
+            <h3 class="card-title">Agenda Ágil</h3>
+            <p class="card-text">
+              Marcação rápida com visão clara de quem chegou, aguarda ou está em atraso.
+            </p>
+          </div>
+
+          <!-- Passo 3: Anamnese Sob Medida -->
+          <div class="workflow-navy-card">
+            <div class="card-top-row">
+              <div class="card-icon-container">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              </div>
+              <span class="card-step-num">03</span>
+            </div>
+            <h3 class="card-title">Anamnese Sob Medida</h3>
+            <p class="card-text">
+              Crie formulários em blocos visuais ou use modelos prontos da nossa biblioteca.
+            </p>
+          </div>
+        </div>
+
+        <!-- Slide 2 (Cards 04 a 06) -->
+        <div class="workflow-carousel-slide" data-slide-index="1">
+          <!-- Passo 4: Tratamento Facilitado -->
+          <div class="workflow-navy-card">
+            <div class="card-top-row">
+              <div class="card-icon-container">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              </div>
+              <span class="card-step-num">04</span>
+            </div>
+            <h3 class="card-title">Tratamento Facilitado</h3>
+            <p class="card-text">
+              Prescreva condutas, planos de cuidados e condutas terapêuticas de forma ágil durante a consulta.
+            </p>
+          </div>
+
+          <!-- Passo 5: Pagamentos & Planos -->
+          <div class="workflow-navy-card">
+            <div class="card-top-row">
+              <div class="card-icon-container">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+              </div>
+              <span class="card-step-num">05</span>
+            </div>
+            <h3 class="card-title">Pagamentos & Planos</h3>
+            <p class="card-text">
+              Sessões avulsas, pacotes com dedução automática e controle financeiro em dia.
+            </p>
+          </div>
+
+          <!-- Passo 6: Evolução & Métricas -->
+          <div class="workflow-navy-card">
+            <div class="card-top-row">
+              <div class="card-icon-container">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+              </div>
+              <span class="card-step-num">06</span>
+            </div>
+            <h3 class="card-title">Evolução & Métricas</h3>
+            <p class="card-text">
+              Evolua rapidamente puxando a última sessão e acompanhe a linha do tempo e estatísticas.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Botão Avançar -->
+      <button
+        type="button"
+        id="btnWorkflowNext"
+        class="workflow-carousel-arrow arrow-next"
+        aria-label="Avançar próximas etapas"
+        title="Avançar"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Indicador Dinâmico / Controles Móveis (Slide 1 e Slide 2) -->
+    <div class="workflow-carousel-pagination" id="workflowPagination">
+      <div class="carousel-dots-list" id="workflowDotsList">
+        <button type="button" class="carousel-dot active" aria-label="Ver etapas 1 a 3" data-slide-to="0"></button>
+        <button type="button" class="carousel-dot" aria-label="Ver etapas 4 a 6" data-slide-to="1"></button>
+      </div>
+      <span class="swipe-hint-text">Deslize para ver as próximas etapas</span>
+    </div>
+
   </div>
-
-  <ol class="how-steps-grid">
-    <!-- Passo 1: Auto-cadastro -->
-    <li class="how-step-item">
-      <div class="how-step-top-line">
-        <div class="how-step-icon">
-          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-            <circle cx="8.5" cy="7" r="4"></circle>
-            <line x1="20" y1="8" x2="20" y2="14"></line>
-            <line x1="23" y1="11" x2="17" y2="11"></line>
-          </svg>
-        </div>
-        <span class="step-num">01</span>
-      </div>
-      <h3 class="step-title">
-        Auto-cadastro
-      </h3>
-      <p class="step-desc">
-        O paciente preenche a ficha no celular antes de chegar, poupando tempo na maca.
-      </p>
-    </li>
-
-    <!-- Passo 2: Agenda Inteligente -->
-    <li class="how-step-item">
-      <div class="how-step-top-line">
-        <div class="how-step-icon">
-          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-            <line x1="16" y1="2" x2="16" y2="6"></line>
-            <line x1="8" y1="2" x2="8" y2="6"></line>
-            <line x1="3" y1="10" x2="21" y2="10"></line>
-          </svg>
-        </div>
-        <span class="step-num">02</span>
-      </div>
-      <h3 class="step-title">
-        Agenda Ágil
-      </h3>
-      <p class="step-desc">
-        Marcação rápida com visão clara de quem chegou, aguarda ou está em atraso.
-      </p>
-    </li>
-
-    <!-- Passo 3: Anamnese Customizada -->
-    <li class="how-step-item">
-      <div class="how-step-top-line">
-        <div class="how-step-icon">
-          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-            <polyline points="14 2 14 8 20 8"></polyline>
-            <line x1="16" y1="13" x2="8" y2="13"></line>
-            <line x1="16" y1="17" x2="8" y2="17"></line>
-          </svg>
-        </div>
-        <span class="step-num">03</span>
-      </div>
-      <h3 class="step-title">
-        Anamnese Sob Medida
-      </h3>
-      <p class="step-desc">
-        Crie formulários no editor no-code ou use modelos prontos da nossa biblioteca.
-      </p>
-    </li>
-
-    <!-- Passo 4: Tratamento Facilitado -->
-    <li class="how-step-item">
-      <div class="how-step-top-line">
-        <div class="how-step-icon">
-          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-            <polyline points="2 17 12 22 22 17"></polyline>
-            <polyline points="2 12 12 17 22 12"></polyline>
-          </svg>
-        </div>
-        <span class="step-num">04</span>
-      </div>
-      <h3 class="step-title">
-        Tratamento Facilitado
-      </h3>
-      <p class="step-desc">
-        Prescreva condutas, exercícios e ciclos terapêuticos de forma ágil ao lado da maca.
-      </p>
-    </li>
-
-    <!-- Passo 5: Pagamentos & Planos -->
-    <li class="how-step-item">
-      <div class="how-step-top-line">
-        <div class="how-step-icon">
-          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-            <line x1="1" y1="10" x2="23" y2="10"></line>
-          </svg>
-        </div>
-        <span class="step-num">05</span>
-      </div>
-      <h3 class="step-title">
-        Pagamentos & Planos
-      </h3>
-      <p class="step-desc">
-        Sessões avulsas, pacotes com dedução automática e controle financeiro em dia.
-      </p>
-    </li>
-
-    <!-- Passo 6: Evolução & Estatísticas -->
-    <li class="how-step-item">
-      <div class="how-step-top-line">
-        <div class="how-step-icon">
-          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-            <polyline points="17 6 23 6 23 12"></polyline>
-          </svg>
-        </div>
-        <span class="step-num">06</span>
-      </div>
-      <h3 class="step-title">
-        Evolução & Métricas
-      </h3>
-      <p class="step-desc">
-        Evolua em 60s puxando a última sessão e acompanhe a linha do tempo e estatísticas.
-      </p>
-    </li>
-  </ol>
 </section>
 
 <style>
-  .how-section {
+  .workflow-navy-section {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    min-height: 100svh;
+    max-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0E2246 !important;
+    color: #FFFFFF !important;
+    padding-top: calc(3.5rem + clamp(0.75rem, 2vh, 1.75rem)) !important;
+    padding-bottom: clamp(1rem, 2vh, 2rem) !important;
+    padding-left: clamp(1.25rem, 4vw, 4rem) !important;
+    padding-right: clamp(1.25rem, 4vw, 4rem) !important;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .workflow-navy-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1280px;
+    height: 100%;
+    max-height: calc(100svh - 4.5rem);
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: clamp(1.5rem, 3vmin, 2.5rem);
-    background-color: var(--ink);
-    padding-inline: max(1.5rem, 6vmin);
-    padding-top: clamp(4rem, 6vmin, 5rem);
-    padding-bottom: clamp(1.5rem, 3vmin, 2.5rem);
-    color: var(--bone);
-  }
-
-  .how-header-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
     justify-content: space-between;
-    gap: 1.25rem;
+    gap: clamp(0.75rem, 1.8vh, 1.75rem);
+    box-sizing: border-box;
   }
 
-  .how-title {
-    max-width: 18ch;
-    color: var(--bone);
-    font-size: clamp(2.2rem, 5.5vmin, 3.8rem);
-    line-height: 1.08;
+  /* Header com Título Gigante e Botão Estilo Pílula */
+  .workflow-navy-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    width: 100%;
+    flex-shrink: 0;
   }
 
-  .btn-features-trigger {
+  .workflow-navy-title {
+    font-size: clamp(1.75rem, 3.6vw, 3.1rem) !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.035em !important;
+    line-height: 1.1 !important;
+    color: #FFFFFF !important;
+    margin: 0 !important;
+  }
+
+  .btn-navy-features-trigger {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    background: rgba(255, 255, 255, 0.12);
-    color: var(--bone);
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    padding: 0.75rem 1.4rem;
-    border-radius: 999px;
-    font-size: clamp(0.85rem, 1.6vmin, 1rem);
+    gap: 0.55rem;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.28) !important;
+    color: #FFFFFF !important;
+    font-size: clamp(0.76rem, 0.92vw, 0.86rem);
     font-weight: 600;
+    padding: 0.6rem 1.25rem;
+    border-radius: 9999px;
     cursor: pointer;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     transition: all 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
-  .btn-features-trigger:hover {
-    background: rgba(255, 255, 255, 0.22);
-    border-color: rgba(255, 255, 255, 0.45);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  .btn-navy-features-trigger svg {
+    color: #FFFFFF !important;
+    stroke: #FFFFFF !important;
   }
 
-  .how-steps-grid {
+  .btn-navy-features-trigger:hover {
+    background: rgba(255, 255, 255, 0.18) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    transform: translateY(-1px);
+  }
+
+  /* Viewport do Carrossel */
+  .workflow-carousel-viewport {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-height: 0;
+  }
+
+  /* Trilho de Cards: no Desktop é grid de 2 linhas x 3 colunas (flattening dos slides com display: contents) */
+  .workflow-cards-track {
+    width: 100%;
     display: grid;
-    gap: clamp(1.2rem, 2.4vmin, 2rem);
-    list-style: none;
-    grid-template-columns: 1fr;
-    padding: 0;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(0.75rem, 2.2vw, 2.25rem);
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
   }
 
-  @media (min-width: 640px) {
-    .how-steps-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  .workflow-carousel-slide {
+    display: contents; /* Em desktop, os cards de cada slide fluem livremente no grid 3x2 */
   }
 
-  @media (min-width: 1024px) {
-    .how-steps-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .how-step-item {
-    border-top: 1px solid rgba(251, 250, 248, 0.22);
-    padding-top: clamp(0.9rem, 1.8vmin, 1.4rem);
+  /* Cards Elegantes e Transparentes com Borda Suave */
+  .workflow-navy-card {
+    background: transparent;
+    border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+    padding-top: clamp(0.6rem, 1.4vh, 1.15rem);
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    box-sizing: border-box;
   }
 
-  .how-step-item:hover {
-    border-color: rgba(255, 255, 255, 0.55);
-    transform: translateY(-2px);
-  }
-
-  .how-step-top-line {
+  .card-top-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 0.25rem;
+    margin-bottom: clamp(0.4rem, 1vh, 0.75rem);
   }
 
-  .how-step-icon {
-    color: var(--clay);
-    background: rgba(0, 114, 255, 0.15);
-    padding: 0.5rem;
+  .card-icon-container {
+    width: 38px;
+    height: 38px;
     border-radius: 10px;
-    display: inline-flex;
+    background: rgba(0, 114, 255, 0.25) !important;
+    border: 1px solid rgba(0, 198, 255, 0.4) !important;
+    color: #38BDF8 !important;
+    display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .step-num {
-    opacity: 0.5;
-    font-size: clamp(0.82rem, 1.5vmin, 0.95rem);
-    font-family: ui-monospace, monospace;
+  .card-icon-container svg {
+    stroke: #38BDF8 !important;
+    color: #38BDF8 !important;
+  }
+
+  .card-step-num {
+    font-size: 0.75rem;
     font-weight: 700;
+    color: rgba(255, 255, 255, 0.45) !important;
     letter-spacing: 0.05em;
   }
 
-  .step-title {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: clamp(1.18rem, 2.2vmin, 1.55rem);
-    color: var(--bone);
-    margin-top: 0.2rem;
-    margin-bottom: 0.25rem;
-    line-height: 1.25;
+  .card-title {
+    font-size: clamp(0.95rem, 1.25vw, 1.2rem) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em !important;
+    color: #FFFFFF !important;
+    line-height: 1.25 !important;
+    margin-bottom: 0.3rem !important;
   }
 
-  .step-desc {
-    font-family: var(--font-accessible);
-    font-weight: 400;
-    letter-spacing: 0.015em;
-    word-spacing: 0.05em;
-    opacity: 0.95;
-    line-height: 1.62;
-    font-size: clamp(1rem, 1.85vmin, 1.25rem);
-    color: var(--bone);
-    max-width: 38ch;
+  .card-text {
+    font-size: clamp(0.78rem, 0.9vw, 0.88rem) !important;
+    color: rgba(255, 255, 255, 0.78) !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
   }
 
-  /* Ajustes Mobile específicos para a Seção 3 (#como-funciona) */
+  /* Setas do Carrossel */
+  .workflow-carousel-arrow {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(14, 34, 70, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    color: #FFFFFF !important;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.2s ease;
+  }
+
+  .workflow-carousel-arrow svg {
+    stroke: #FFFFFF !important;
+  }
+
+  .workflow-carousel-arrow:hover {
+    background: #0072FF !important;
+    border-color: #0072FF !important;
+  }
+
+  .workflow-carousel-arrow.arrow-prev {
+    left: -12px;
+  }
+
+  .workflow-carousel-arrow.arrow-next {
+    right: -12px;
+  }
+
+  /* Paginação / Bolinhas */
+  .workflow-carousel-pagination {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.35rem;
+    flex-shrink: 0;
+  }
+
+  .carousel-dots-list {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .carousel-dot.active {
+    width: 24px;
+    background: #38BDF8 !important;
+  }
+
+  .swipe-hint-text {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.55) !important;
+  }
+
+  /* ESTADO CARROSSEL (Telas compactas ou com restrição de altura/largura) */
+  .workflow-carousel-viewport.is-carousel .workflow-cards-track {
+    display: flex;
+    grid-template-columns: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0.5rem 0.25rem 0.75rem;
+    gap: 1.25rem;
+    width: 100%;
+  }
+
+  .workflow-carousel-viewport.is-carousel .workflow-cards-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Cada Slide no Carrossel: agrupa 2 a 3 cards alinhados em linhas/colunas para preencher bem a tela */
+  .workflow-carousel-viewport.is-carousel .workflow-carousel-slide {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    min-width: 100%;
+    max-width: 100%;
+    flex-shrink: 0;
+    scroll-snap-align: center;
+    box-sizing: border-box;
+  }
+
+  .workflow-carousel-viewport.is-carousel .workflow-navy-card {
+    min-width: 100%;
+    max-width: 100%;
+    border-top: none !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 16px;
+    padding: clamp(0.75rem, 1.6vh, 1.15rem);
+  }
+
+  .workflow-carousel-viewport.is-carousel .workflow-carousel-arrow {
+    display: flex;
+  }
+
+  .workflow-carousel-viewport.is-carousel + .workflow-carousel-pagination {
+    display: flex;
+  }
+
+  /* Responsivo Mobile e telas compactas */
   @media (max-width: 768px) {
-    .how-section {
-      height: 100svh !important;
-      height: 100dvh !important;
-      min-height: 100svh;
-      max-height: 100svh;
-      padding-top: 3.75rem !important;
-      padding-bottom: 0.75rem !important;
-      padding-inline: 1rem !important;
-      justify-content: flex-start !important;
-      gap: 0.6rem !important;
-      overflow: hidden !important;
+    .workflow-navy-section {
+      padding-top: calc(3.5rem + 0.75rem) !important;
+      padding-bottom: 1rem !important;
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
     }
 
-    .how-header-row {
+    .workflow-navy-header {
       flex-direction: column;
       align-items: flex-start;
-      gap: 0.4rem;
-      flex-shrink: 0;
-    }
-
-    .how-title {
-      font-size: 1.55rem !important;
-      line-height: 1.15;
-    }
-
-    .btn-features-trigger {
-      padding: 0.45rem 0.9rem;
-      font-size: 0.78rem;
-      gap: 0.4rem;
-    }
-
-    .btn-features-trigger svg {
-      width: 15px;
-      height: 15px;
-    }
-
-    .how-steps-grid {
-      grid-template-columns: 1fr;
       gap: 0.65rem;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      flex: 1;
-      padding-bottom: 1rem;
-      padding-right: 0.25rem;
     }
 
-    .how-step-item {
-      padding-top: 0.65rem;
-      gap: 0.2rem;
+    .workflow-navy-title {
+      font-size: 1.65rem !important;
     }
 
-    .how-step-icon {
-      padding: 0.35rem;
-      border-radius: 8px;
+    .btn-navy-features-trigger {
+      width: 100%;
+      justify-content: center;
+      font-size: 0.78rem;
+      padding: 0.5rem 1rem;
     }
 
-    .how-step-icon svg {
-      width: 18px;
-      height: 18px;
+    .workflow-cards-track {
+      display: flex !important;
+      grid-template-columns: none !important;
+      overflow-x: auto !important;
+      scroll-snap-type: x mandatory !important;
+      scroll-behavior: smooth !important;
+      scrollbar-width: none !important;
+      gap: 1.25rem !important;
+      padding: 0.25rem 0 !important;
+      width: 100% !important;
     }
 
-    .step-title {
-      font-size: 1.1rem;
-      margin-top: 0.1rem;
-      margin-bottom: 0.15rem;
+    .workflow-cards-track::-webkit-scrollbar {
+      display: none !important;
     }
 
-    .step-desc {
-      font-size: 0.88rem;
-      line-height: 1.4;
-      opacity: 0.9;
+    .workflow-carousel-slide {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.75rem !important;
+      min-width: 100% !important;
+      max-width: 100% !important;
+      flex-shrink: 0 !important;
+      scroll-snap-align: center !important;
+      box-sizing: border-box !important;
+    }
+
+    .workflow-navy-card {
+      min-width: 100% !important;
+      max-width: 100% !important;
+      border-top: none !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+      border: 1px solid rgba(255, 255, 255, 0.18) !important;
+      border-radius: 14px !important;
+      padding: 0.75rem 1rem !important;
+    }
+
+    .card-top-row {
+      margin-bottom: 0.35rem !important;
+    }
+
+    .card-icon-container {
+      width: 34px !important;
+      height: 34px !important;
+      border-radius: 8px !important;
+    }
+
+    .card-title {
+      font-size: 0.95rem !important;
+      margin-bottom: 0.2rem !important;
+    }
+
+    .card-text {
+      font-size: 0.8rem !important;
+      line-height: 1.35 !important;
+    }
+
+    .workflow-carousel-arrow {
+      display: flex !important;
+    }
+
+    .workflow-carousel-arrow.arrow-prev {
+      left: 2px !important;
+    }
+
+    .workflow-carousel-arrow.arrow-next {
+      right: 2px !important;
+    }
+
+    .workflow-carousel-pagination {
+      display: flex !important;
+    }
+  }
+
+  /* Em telas muito curtas, ajusta para 2 cards ou rolagem suave sem quebrar */
+  @media (max-height: 680px) and (max-width: 768px) {
+    .workflow-navy-container {
+      gap: 0.5rem !important;
+    }
+    .workflow-carousel-slide {
+      gap: 0.5rem !important;
+    }
+    .workflow-navy-card {
+      padding: 0.6rem 0.85rem !important;
     }
   }
 </style>
